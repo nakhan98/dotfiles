@@ -1,0 +1,8 @@
+# ~/.xinitrc
+# Spectrwm xinitrc file
+
+# Launch and fork spectrwm startup script
+~/.i3_startup.sh &
+
+# Launch spectrwm
+exec i3;
