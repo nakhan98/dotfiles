@@ -39,3 +39,6 @@ set backup
 
 " Edit multiple buffers without saving 
 set hidden
+
+"Change encryption algo to blowfish
+set cm=blowfish
