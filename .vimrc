@@ -41,4 +41,4 @@ set backup
 set hidden
 
 "Change encryption algo to blowfish
-set cm=blowfish
+set cm=blowfish2
