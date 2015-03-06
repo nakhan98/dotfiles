@@ -26,5 +26,5 @@ keepassx &
 (sleep 10s && ~/.dropbox-dist/dropboxd) &
 
 # Python power management script
-#python ~/code/scripts/power_man.py
-python ~/code/scripts/power_man.py >> ~/code/scripts/power_man.log 2>&1  & # debugging
+python ~/code/scripts/power_man.py &
+#python ~/code/scripts/power_man.py >> ~/code/scripts/power_man.log 2>&1  & # debugging
