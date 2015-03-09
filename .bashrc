@@ -116,3 +116,6 @@ fi
 # http://stackoverflow.com/a/2596835
 export VISUAL=vim
 export EDITOR="$VISUAL"
+
+# Display my todo file
+cat ~/.notes.txt
