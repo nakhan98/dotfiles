@@ -10,6 +10,7 @@ alias specstart="cp -v ~/.xinitrc_spectrwm ~/.xinitrc; startx"
 alias lxdestart="cp -v ~/.xinitrc_lxde ~/.xinitrc; startx"
 alias i3start="cp -v ~/.xinitrc_i3 ~/.xinitrc; startx"
 alias proses='ps auxf | less'
+alias takenote='~/code/scripts/pytakenote.py'
 
 
 # Pi/Server
