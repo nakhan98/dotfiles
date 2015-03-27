@@ -117,8 +117,5 @@ fi
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-# Display my todo file
-#cat ~/.notes.txt
-
 # Run PyTakeNote
-~/code/scripts/pytakenote.py
+takenote
