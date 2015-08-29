@@ -44,4 +44,4 @@ set hidden
 set cm=blowfish2
 
 " Load Pathogen
-execute pathogen#infect()
+" execute pathogen#infect()
