@@ -16,6 +16,7 @@ fi
 
 
 # Put your fun stuff here.
+
 # VPN functions
 
 function workdns(){
@@ -31,7 +32,7 @@ function startvpn(){
     sudo openvpn --mktun --dev tun0 &&
     sleep 3 &&
     workdns &&
-    sudo openvpn --config ~/velocix.ovpn --dev tun0 &&
+    sudo openvpn --config ~/client.ovpn --dev tun0 &&
     normdns
 }
 
