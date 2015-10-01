@@ -1,0 +1,47 @@
+# /etc/skel/.bashrc
+#
+# This file is sourced by all *interactive* bash shells on startup,
+# including some apparently interactive shells such as scp and rcp
+# that can't tolerate any output.  So make sure this doesn't display
+# anything or bad things will happen !
+
+
+# Test for an interactive shell.  There is no need to set anything
+# past this point for scp and rcp, and it's important to refrain from
+# outputting anything in those cases.
+if [[ $- != *i* ]] ; then
+	# Shell is non-interactive.  Be done now!
+	return
+fi
+
+
+# Put your fun stuff here.
+# VPN functions
+
+function workdns(){
+    normdns
+    cp  -v ~/vpn_resolv.conf_bak ~/vpn_resolv.conf &&
+    if sudo mount -v --bind ~/vpn_resolv.conf /var/run/shill/resolv.conf; then
+        echo "DNS settings succesfully changed"                
+    fi
+}
+
+function startvpn(){
+    echo "startvpn function"
+    sudo openvpn --mktun --dev tun0 &&
+    sleep 3 &&
+    workdns &&
+    sudo openvpn --config ~/velocix.ovpn --dev tun0 &&
+    normdns
+}
+
+function normdns(){
+    # Unmount all mounts
+    while true
+    do
+        if ! sudo umount -v /var/run/shill/resolv.conf; then
+            echo "Restored DNS settings"
+            break
+        fi
+    done
+}
