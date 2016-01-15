@@ -1,0 +1,10 @@
+hardstatus on
+hardstatus alwayslastline
+#hardstatus string "%w"
+# From http://wiki.redbrick.dcu.ie/mw/Screen#Screen_Configuration
+hardstatus string '%{= kg}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%? %?%= %{g}][%{Y}%l%{g}]%{=b C}[ %d %M %c ]%{W}'
+defscrollback 100000
+
+# Screen focus
+bind j focus down
+bind k focus up
