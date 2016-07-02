@@ -40,8 +40,24 @@ set backup
 " Edit multiple buffers without saving 
 set hidden
 
-" Change encryption algo to blowfish
-set cm=blowfish2
+"Change encryption algo to blowfish
+"set cm=blowfish2
 
-" Load Pathogen
-" execute pathogen#infect()
+"Pathogen - https://github.com/tpope/vim-pathogen
+execute pathogen#infect()
+
+" Airline stuff
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Change to vtfspirent dir
+" http://inlehmansterms.net/2014/09/04/sane-vim-working-directories/
+" cd ~/cachelogic/development/vtfspirent/vxtest
+
+" Colorcolumn
+set colorcolumn=80
+highlight ColorColumn ctermbg=8
