@@ -4,10 +4,6 @@ set nu
 " Set syntax on
 syntax on
 
-" Messes up nested comments in python code
-"set cindent
-"set smartindent
-
 " From here - http://stackoverflow.com/a/1523519
 set tabstop=4
 set shiftwidth=4
@@ -53,10 +49,6 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
-
-" Change to vtfspirent dir
-" http://inlehmansterms.net/2014/09/04/sane-vim-working-directories/
-" cd ~/cachelogic/development/vtfspirent/vxtest
 
 " Colorcolumn
 set colorcolumn=80
