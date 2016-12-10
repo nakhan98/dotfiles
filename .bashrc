@@ -118,4 +118,7 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 # Run PyTakeNote
-takenote
+# takenote
+
+# 256 colours
+export TERM=xterm-256color
