@@ -169,8 +169,11 @@ bindsym  XF86AudioLowerVolume exec amixer set Master 5%-
 bindsym  XF86AudioRaiseVolume exec amixer set Master 5%+
 
 # Backlight
-bindsym XF86MonBrightnessDown exec exec xbacklight - 10
-bindsym XF86MonBrightnessUp exec exec xbacklight + 10
+# bindsym XF86MonBrightnessDown exec exec xbacklight - 10
+# bindsym XF86MonBrightnessUp exec exec xbacklight + 10
 
 # Lock Screen
 bindsym Ctrl+Mod1+l exec xscreensaver-command -lock
+
+# Startup script
+exec --no-startup-id ~/.i3_startup.sh
