@@ -37,7 +37,7 @@ set backup
 set hidden
 
 "Change encryption algo to blowfish
-"set cm=blowfish2
+set cm=blowfish2
 
 "Pathogen - https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
