@@ -53,3 +53,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " Colorcolumn
 set colorcolumn=80
 highlight ColorColumn ctermbg=8
+
+" Make vim transparent
+" https://stackoverflow.com/a/37720708
+hi Normal guibg=NONE ctermbg=NONE
