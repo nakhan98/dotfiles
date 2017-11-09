@@ -1,16 +1,18 @@
 # General
-alias scc="screen -dR"
 alias new='aptitude search ~U'
 alias upgrade="sudo aptitude update && sudo aptitude safe-upgrade"
 alias apv='aptitude versions'
-alias netcons="sudo watch -n10 'netstat -tup'"
-alias big='du -hs ~/* | sort -nr | head'
-alias bigr='du -hs /* | sort -nr | head'
-alias specstart="cp -v ~/.xinitrc_spectrwm ~/.xinitrc; startx"
-alias lxdestart="cp -v ~/.xinitrc_lxde ~/.xinitrc; startx"
-alias i3start="cp -v ~/.xinitrc_i3 ~/.xinitrc; startx"
 alias proses='ps auxf | less'
-#alias takenote='~/code/scripts/pytakenote.py'
+alias ll="ls -haltr"
+alias tma="tmux attach -d"
+# alias scc="screen -dR"
+# alias takenote='~/code/scripts/pytakenote.py'
+# alias big='du -hs ~/* | sort -nr | head'
+# alias bigr='du -hs /* | sort -nr | head'
+# alias specstart="cp -v ~/.xinitrc_spectrwm ~/.xinitrc; startx"
+# alias lxdestart="cp -v ~/.xinitrc_lxde ~/.xinitrc; startx"
+# alias i3start="cp -v ~/.xinitrc_i3 ~/.xinitrc; startx"
+# alias netcons="sudo watch -n10 'netstat -tup'"
 
 
 # Pi/Server
