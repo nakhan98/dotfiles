@@ -16,6 +16,10 @@ nitrogen --restore &
 # Enable touchpad tapping and typing mod
 # (synclient TapButton1=1 TapButton2=2 TapButton3=3; syndaemon -t -k -i 2 -d) &
 
+# Reverse scrolling
+# synclient VertScrollDelta=-111
+# synclient HorizScrollDelta=-111
+
 # Start an lxterminal
 lxterminal &
 
