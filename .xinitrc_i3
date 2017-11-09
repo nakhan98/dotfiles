@@ -1,8 +1,0 @@
-# ~/.xinitrc
-# i3 xinitrc file
-
-# Launch and fork i3 startup script
-~/.i3_startup.sh &
-
-# Launch i3
-exec i3;
