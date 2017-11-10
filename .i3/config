@@ -175,5 +175,10 @@ bindsym  XF86AudioRaiseVolume exec amixer set Master 5%+
 # Lock Screen
 bindsym Ctrl+Mod1+l exec xscreensaver-command -lock
 
+## Chromebook shortcuts
+bindsym Ctrl+Mod1+Left exec "xvkbd -xsendevent -text '\[Home]'"
+bindsym Ctrl+Mod1+Right exec "xvkbd -xsendevent -text '\[End]'"
+bindsym Shift+BackSpace exec "xvkbd -xsendevent -text '\[Delete]'"
+
 # Startup script
 exec --no-startup-id ~/.i3_startup.sh
