@@ -63,4 +63,4 @@ let g:jedi#completions_enabled = 0
 
 " Use auto-pep8 to format (requires autopep8 and vim plugin)
 " https://stackoverflow.com/a/23762720
-au FileType python setlocal formatprg=autopep8\ -
+" au FileType python setlocal formatprg=autopep8\ -
