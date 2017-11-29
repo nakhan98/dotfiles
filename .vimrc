@@ -57,3 +57,10 @@ highlight ColorColumn ctermbg=8
 " Make vim transparent
 " https://stackoverflow.com/a/37720708
 hi Normal guibg=NONE ctermbg=NONE
+
+" Disable jedi autocomplete (can be slow)
+let g:jedi#completions_enabled = 0
+
+" Use auto-pep8 to format (requires autopep8 and vim plugin)
+" https://stackoverflow.com/a/23762720
+au FileType python setlocal formatprg=autopep8\ -
