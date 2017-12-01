@@ -50,6 +50,11 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+" Use powerline fonts
+" See:
+" https://powerline.readthedocs.io/en/master/installation.html#patched-fonts
+" let g:airline_powerline_fonts=1
+
 " Colorcolumn
 set colorcolumn=80
 highlight ColorColumn ctermbg=8
