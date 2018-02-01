@@ -181,6 +181,11 @@ bindsym Ctrl+Mod1+Down exec "xvkbd -xsendevent -text '\[End]'"
 bindsym Shift+BackSpace exec "xvkbd -xsendevent -text '\[Delete]'"
 bindsym Mod1+Up exec "xvkbd -xsendevent -text '\[Prior]'"
 bindsym Mod1+Down exec "xvkbd -xsendevent -text '\[Next]'"
+bindsym F1 exec "xvkbd -xsendevent -text '\A\[Left]'"
+bindsym F2 exec "xvkbd -xsendevent -text '\A\[Right]'"
+bindsym F3 exec "xvkbd -xsendevent -text '\Cr'"
+bindsym F4 fullscreen
+bindsym F5 layout toggle split
 
 # Startup script
 exec --no-startup-id ~/.i3_startup.sh
