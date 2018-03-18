@@ -363,4 +363,8 @@ HISTSIZE=1000
 SAVEHIST=9999999
 
 # Run dropbox if not running
-pidof dropbox > /dev/null || ~/.dropbox-dist/dropboxd
+if ! pidof dropbox > /dev/null
+then
+    echo "Starting dropbox..."
+    nohup ~/.dropbox-dist/dropboxd &> ~/.dropboxd.log &
+fi
