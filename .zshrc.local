@@ -361,3 +361,6 @@ export TERM=xterm-256color
 # Increase history
 HISTSIZE=1000
 SAVEHIST=9999999
+
+# Run dropbox if not running
+pidof dropbox > /dev/null || ~/.dropbox-dist/dropboxd
