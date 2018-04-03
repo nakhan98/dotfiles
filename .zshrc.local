@@ -368,3 +368,31 @@ then
     echo "Starting dropbox..."
     nohup ~/.dropbox-dist/dropboxd &> ~/.dropboxd.log &
 fi
+
+# Chromebook specific stuff
+export ENCFS6_CONFIG=/home/nasef/.encfs6.xml
+
+mount_encfs_sd() {
+	if [ ! -e ~/extra/Dropbox ]
+    then
+        umount_encfs_sd
+		echo "Mounting encfs dir on SD card..."
+		encfs /media/removable/SD\ Card/.extra/ ~/extra
+    fi
+}
+
+umount_encfs_sd() {
+    echo "Attempting unmount of encfs on SD card..."
+    fusermount -u ~/extra &> /dev/null
+    
+}
+
+mount_dropbox() {
+    if ! pidof dropbox > /dev/null
+    then
+        echo "Starting dropbox..."
+        (nice -n19 ionice -c3  ~/.dropbox-dist/dropboxd) &
+    fi
+}
+
+# mount_encfs_sd && mount_dropbox

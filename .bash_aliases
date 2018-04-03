@@ -9,36 +9,6 @@ alias dirs="dirs -v"
 alias torfox="firefox-esr -P torfox -no-remote &"
 alias defaultfox="firefox-esr -P default -no-remote &"
 
-# Functions
-
-# Encfs (chromebook)
-export ENCFS6_CONFIG=/home/nasef/.encfs6.xml
-
-mount_encfs_sd() {
-	if [ ! -e ~/extra/Dropbox ]
-    then
-        umount_encfs_sd
-		echo "Mounting encfs dir on SD card..."
-		encfs /media/removable/SD\ Card/.extra/ ~/extra
-    fi
-}
-
-umount_encfs_sd() {
-    echo "Attempting unmount of encfs on SD card..."
-    fusermount -u ~/extra &> /dev/null
-    
-}
-
-mount_dropbox() {
-    if ! pidof dropbox > /dev/null
-    then
-        echo "Starting dropbox..."
-        (nice -n19 ionice -c3  ~/.dropbox-dist/dropboxd) &
-    fi
-}
-
-# mount_encfs_sd && mount_dropbox
-
 # Other
 # alias scc="screen -dR"
 # alias takenote='~/code/scripts/pytakenote.py'
