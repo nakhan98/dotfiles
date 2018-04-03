@@ -11,7 +11,7 @@ alias defaultfox="firefox-esr -P default -no-remote &"
 
 # Functions
 
-# Encfs
+# Encfs (chromebook)
 export ENCFS6_CONFIG=/home/nasef/.encfs6.xml
 
 mount_encfs_sd() {
@@ -37,7 +37,7 @@ mount_dropbox() {
     fi
 }
 
-mount_encfs_sd && mount_dropbox
+# mount_encfs_sd && mount_dropbox
 
 # Other
 # alias scc="screen -dR"
