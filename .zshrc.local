@@ -391,7 +391,7 @@ mount_dropbox() {
     if ! pidof dropbox > /dev/null
     then
         echo "Starting dropbox..."
-        (nice -n19 ionice -c3  ~/.dropbox-dist/dropboxd) &
+        nohup ~/.dropbox-dist/dropboxd &> ~/.dropboxd.log &
     fi
 }
 
