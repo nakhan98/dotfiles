@@ -27,7 +27,7 @@ set hls
 set lbr
 
 " Colouring
-colorscheme baycomb
+colorscheme rdark-terminal2
 set background=dark
 
 " Set backup
@@ -50,6 +50,9 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+" Force start airline
+set laststatus=2
+
 " Use powerline fonts
 " See:
 " https://powerline.readthedocs.io/en/master/installation.html#patched-fonts
@@ -66,9 +69,5 @@ hi Normal guibg=NONE ctermbg=NONE
 " Disable jedi autocomplete (can be slow)
 let g:jedi#completions_enabled = 0
 
-" Use auto-pep8 to format (requires autopep8 and vim plugin)
-" https://stackoverflow.com/a/23762720
-" au FileType python setlocal formatprg=autopep8\ -
-
 " CtrlP vim
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+" set runtimepath^=~/.vim/bundle/ctrlp.vim
