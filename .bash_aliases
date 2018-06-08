@@ -52,6 +52,38 @@ start_xclipper() {
     fi
 }
 
+
+## Chromebook specific stuff
+# export ENCFS6_CONFIG=/home/nasef/.encfs6.xml
+# export JAVA_HOME="/home/nasef/extra/apps/jdk1.8.0_172"
+# export PATH=/home/nasef/extra/apps/apache-maven-3.5.3/bin:$PATH
+# 
+# mount_encfs_sd() {
+# 	if [ ! -e ~/extra/apps ]
+#     then
+#         umount_encfs_sd
+# 		echo "Mounting encfs dir on SD card..."
+# 		encfs /media/removable/SD\ Card/.extra/ ~/extra
+#     fi
+# }
+# 
+# umount_encfs_sd() {
+#     echo "Attempting unmount of encfs on SD card..."
+#     fusermount -u ~/extra &> /dev/null
+#     
+# }
+# 
+# mount_remotes() {
+#     fusermount -u ~/mnt/mini_server_downloads
+#     fusermount -u ~/cloud_encfs
+#     fusermount -u ~/Dropbox
+#     sshfs -o reconnect,follow_symlinks  mini_server:Downloads/ \
+#     ~/mnt/mini_server_downloads &&
+#     sshfs -o reconnect mini_server:cloud_encfs/ ~/cloud_encfs/
+#     sshfs -o reconnect mini_server:Dropbox/ ~/Dropbox/
+# }
+
+
 ## Old stuff
 # Other
 # alias scc="screen -dR"
