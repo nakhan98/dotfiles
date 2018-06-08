@@ -122,3 +122,7 @@ export EDITOR="$VISUAL"
 
 # 256 colours
 export TERM=xterm-256color
+
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+
+start_xclipper
