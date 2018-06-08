@@ -397,20 +397,14 @@ umount_encfs_sd() {
     
 }
 
-mount_dropbox() {
-    if ! pidof dropbox > /dev/null
-    then
-        echo "Starting dropbox..."
-        nohup ~/.dropbox-dist/dropboxd &> ~/.dropboxd.log &
-    fi
-}
-
 mount_remotes() {
     fusermount -u ~/mnt/mini_server_downloads
     fusermount -u ~/cloud_encfs
+    fusermount -u ~/Dropbox
     sshfs -o reconnect,follow_symlinks  mini_server:Downloads/ \
     ~/mnt/mini_server_downloads &&
     sshfs -o reconnect mini_server:cloud_encfs/ ~/cloud_encfs/
+    sshfs -o reconnect mini_server:Dropbox/ ~/Dropbox/
 }
 
-mount_encfs_sd # && mount_dropbox
+mount_encfs_sd
