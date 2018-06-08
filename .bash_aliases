@@ -1,4 +1,6 @@
-# General
+# Aliases and custom functions
+
+## General
 alias new='aptitude search ~U'
 alias upgrade="sudo aptitude update && sudo aptitude safe-upgrade"
 alias apv='aptitude versions'
@@ -10,8 +12,8 @@ alias torfox="firefox-esr -P torfox -no-remote &"
 alias defaultfox="firefox-esr -P default -no-remote &"
 alias tailf="tail -f"
 
-# Aliases
-# Awk aliases for getting n-th column
+## Aliases
+### Awk aliases for getting n-th column
 alias c1="awk '{print \$1}'"
 alias c2="awk '{print \$2}'"
 alias c3="awk '{print \$3}'"
@@ -22,6 +24,35 @@ alias c7="awk '{print \$7}'"
 alias c8="awk '{print \$8}'"
 alias c9="awk '{print \$9}'"
 
+## Functions
+
+mount_remotes() {
+    fusermount -u ~/mnt/mini_server_downloads
+    fusermount -u ~/cloud_encfs
+    fusermount -u ~/Dropbox
+    sshfs -o reconnect,follow_symlinks  mini_server:Downloads/ \
+    ~/mnt/mini_server_downloads &&
+    sshfs -o reconnect mini_server:cloud_encfs/ ~/cloud_encfs/ &&
+    sshfs -o reconnect mini_server:Dropbox/ ~/Dropbox/
+}
+
+xclipper() {
+    echo "Starting xclipper..."
+    while [ 1 ]
+    do
+        nc -lp 2224 | /usr/bin/xclip -i -f -selection primary | \
+            /usr/bin/xclip -i -selection clipboard;
+    done
+}
+
+start_xclipper() {
+    if ! nc -z localhost 2224
+    then
+        xclipper &
+    fi
+}
+
+## Old stuff
 # Other
 # alias scc="screen -dR"
 # alias takenote='~/code/scripts/pytakenote.py'
