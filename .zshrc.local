@@ -380,11 +380,12 @@ fi
 # mount_encfs_sd
 
 # Up/down arrow history - http://ml.grml.org/pipermail/grml/2013-January/011444.html
-autoload -Uz up-line-or-beginning-search
-zle -N up-line-or-beginning-search
-autoload -Uz down-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey '\eOA' up-line-or-beginning-search
-bindkey '\e[A' up-line-or-beginning-search
-bindkey '\eOB' down-line-or-beginning-search
-bindkey '\e[B' down-line-or-beginning-search
+# Although unnecessary as page-up/down does same thing by default - http://ml.grml.org/pipermail/grml/2013-January/011447.html
+# autoload -Uz up-line-or-beginning-search
+# zle -N up-line-or-beginning-search
+# autoload -Uz down-line-or-beginning-search
+# zle -N down-line-or-beginning-search
+# bindkey '\eOA' up-line-or-beginning-search
+# bindkey '\e[A' up-line-or-beginning-search
+# bindkey '\eOB' down-line-or-beginning-search
+# bindkey '\e[B' down-line-or-beginning-search
