@@ -402,3 +402,11 @@ fi
 # bindkey '\e[A' up-line-or-beginning-search
 # bindkey '\eOB' down-line-or-beginning-search
 # bindkey '\e[B' down-line-or-beginning-search
+#
+# Conda tab completion for zsh:
+# Tab completion for `conda` in zsh: https://github.com/esc/conda-zsh-completion
+
+# Add the following to your .zshrc after cloning the above repo:
+# fpath+=/path/to/conda-zsh-completion
+# compinit conda
+# zstyle ':completion::complete:*' use-cache 1
