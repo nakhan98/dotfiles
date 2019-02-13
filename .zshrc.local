@@ -48,7 +48,20 @@ function virtual_env_prompt () {
     REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 }
 grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
-zstyle ':prompt:grml:left:setup' items rc virtual-env change-root user at host path vcs percent
+
+# Anaconda
+# https://gist.github.com/Cadair/78da7930c6dafeb1003a
+
+function conda_prompt () {
+    if [ -n "${CONDA_DEFAULT_ENV+1}" ]; then
+        REPLY=${CONDA_DEFAULT_ENV+(conda-${CONDA_DEFAULT_ENV:t}) }
+    # elif [ -n "${CONDA_ON+1}" ]; then
+    #     REPLY="(anaconda)"
+    fi
+}
+grml_theme_add_token conda -f conda_prompt '%B%F{white}' '%f%b'
+
+zstyle ':prompt:grml:left:setup' items rc conda virtual-env change-root user at host path vcs percent
 
 ## ZLE tweaks ##
 
@@ -389,3 +402,11 @@ fi
 # bindkey '\e[A' up-line-or-beginning-search
 # bindkey '\eOB' down-line-or-beginning-search
 # bindkey '\e[B' down-line-or-beginning-search
+#
+# Conda tab completion for zsh:
+# Tab completion for `conda` in zsh: https://github.com/esc/conda-zsh-completion
+
+# Add the following to your .zshrc after cloning the above repo:
+# fpath+=/path/to/conda-zsh-completion
+# compinit conda
+# zstyle ':completion::complete:*' use-cache 1
