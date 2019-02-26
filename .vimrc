@@ -71,3 +71,6 @@ let g:jedi#completions_enabled = 0
 
 " CtrlP vim
 " set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" Set mouse
+set mouse=a
