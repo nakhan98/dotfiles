@@ -74,3 +74,11 @@ let g:jedi#completions_enabled = 0
 
 " Set mouse
 set mouse=a
+
+" Nerdtree stuff
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+" Start NERDTree
+autocmd VimEnter * NERDTree
+" Go to previous (last accessed) window.
+autocmd VimEnter * wincmd p
