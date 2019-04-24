@@ -60,8 +60,17 @@ function conda_prompt () {
     fi
 }
 grml_theme_add_token conda -f conda_prompt '%B%F{white}' '%f%b'
+#
+# For helping differentiate different machines
+function extra_identifier_prompt() {
+    if [ -n "${EXTRA_IDENTIFIER+1}" ]; then
+        REPLY="| ${EXTRA_IDENTIFIER} | "
+    fi
+}
 
-zstyle ':prompt:grml:left:setup' items rc conda virtual-env change-root user at host path vcs percent
+grml_theme_add_token extra_identifier -f extra_identifier_prompt '%B%F{green}' '%f%b'
+
+zstyle ':prompt:grml:left:setup' items rc extra_identifier conda virtual-env change-root user at host path vcs percent
 
 ## ZLE tweaks ##
 
@@ -410,3 +419,6 @@ setopt histignorespace
 # fpath+=/path/to/conda-zsh-completion
 # compinit conda
 # zstyle ':completion::complete:*' use-cache 1
+
+# Assign extra identifier here
+# export EXTRA_IDENTIFIER=
