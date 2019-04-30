@@ -1,3 +1,14 @@
+" No backward conpatibility
+set nocompatible
+
+" Search into subfolders
+set path+=**
+
+" Wild Menu
+set wildmenu
+
+" Setup ctags
+command! MakeTags !ctags -R --exclude=.git .
 " Turn on line numbering 
 set nu
 
@@ -15,7 +26,7 @@ filetype plugin on
 set et 
 
 " Change to directory of file
-set autochdir
+" set autochdir
 
 " Case insensitive search
 set ic
