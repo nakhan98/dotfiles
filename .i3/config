@@ -189,3 +189,6 @@ bindsym F5 layout toggle split
 
 # Startup script
 exec --no-startup-id ~/.i3_startup.sh
+
+# gmrun
+bindsym $mod+g exec gmrun
