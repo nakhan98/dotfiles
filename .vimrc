@@ -1,3 +1,9 @@
+" Set python interpreter (for neovim) - requires `pynvim` python package
+" let g:python3_host_prog = '/usr/local/anaconda3/envs/black/bin/python'
+
+"set custom python (requires vim with dynamic python support eg. macvim)
+" set pythonthreehome = "/usr/local/anaconda3/envs/black"
+
 " Turn on line numbering
 set nu
 
@@ -94,9 +100,6 @@ let NERDTreeDirArrows = 1
 autocmd VimEnter * NERDTree
 " Go to previous (last accessed) window.
 autocmd VimEnter * wincmd p
-
-"set custom python (requires vim with dynamic python support eg. macvim)
-" set pythonthreehome = "/usr/local/anaconda3/envs/black"
 
 " Run black on save
 " If you have a custom python virtualenv with `black` installed
