@@ -12,7 +12,6 @@ set wildmenu
 
 " Setup ctags
 command! MakeTags !ctags -R --exclude=.git .
-" command! MakeTags !ctags -R --exclude=.git --exclude=venv .
 
 " Set syntax on
 syntax on
@@ -97,9 +96,9 @@ autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
 "set custom python (requires vim with dynamic python support eg. macvim)
-" set pythonthreehome=/usr/local/anaconda3/envs/black
+" set pythonthreehome = "/usr/local/anaconda3/envs/black"
 
 " Run black on save
 " If you have a custom python virtualenv with `black` installed
-" let g:black_virtualenv="/Users/nasef_khan/tmp/virtualenvs/black"
+" let g:black_virtualenv = "/Users/nasef_khan/tmp/virtualenvs/black"
 autocmd BufWritePre *.py execute ':Black'
