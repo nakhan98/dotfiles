@@ -2,7 +2,7 @@
 " let g:python3_host_prog = '/usr/local/anaconda3/envs/black/bin/python'
 
 "set custom python (requires vim with dynamic python support eg. macvim)
-" set pythonthreehome = "/usr/local/anaconda3/envs/black"
+" set pythonthreehome =/usr/local/anaconda3/envs/black
 
 " Turn on line numbering
 set nu
