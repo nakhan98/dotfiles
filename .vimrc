@@ -106,3 +106,8 @@ autocmd VimEnter * wincmd p
 " If you have a custom python virtualenv with `black` installed
 " let g:black_virtualenv = "/Users/nasef_khan/tmp/virtualenvs/black"
 autocmd BufWritePre *.py execute ':Black'
+
+" Change cursor shape according to mode (note: neovim has this by default)
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
