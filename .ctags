@@ -1,0 +1,4 @@
+--fields=+l
+--languages=python
+--python-kinds=-iv
+--exclude=.git
