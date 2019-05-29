@@ -106,3 +106,12 @@ autocmd VimEnter * wincmd p
 " If you have a custom python virtualenv with `black` installed
 " let g:black_virtualenv = "/Users/nasef_khan/tmp/virtualenvs/black"
 autocmd BufWritePre *.py execute ':Black'
+
+" YAML indentation
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" Test easier vim pane navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
