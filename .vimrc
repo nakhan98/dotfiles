@@ -105,7 +105,12 @@ autocmd VimEnter * wincmd p
 " Run black on save
 " If you have a custom python virtualenv with `black` installed
 " let g:black_virtualenv = "/Users/nasef_khan/tmp/virtualenvs/black"
-autocmd BufWritePre *.py execute ':Black'
+" autocmd BufWritePre *.py execute ':Black'
+
+" Change cursor shape according to mode (note: neovim has this by default)
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
 
 " YAML indentation
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
