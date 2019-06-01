@@ -115,8 +115,12 @@ let &t_EI = "\<Esc>[2 q"
 " YAML indentation
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-" Test easier vim pane navigation
+" Easier vim pane navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" System clipboard integration (for neovim)
+" (Requires xclip on GNU/Linux)
+set clipboard+=unnamedplus
