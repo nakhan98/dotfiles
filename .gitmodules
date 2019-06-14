@@ -22,3 +22,6 @@
 [submodule ".vim/bundle/black"]
 	path = .vim/bundle/black
 	url = https://github.com/python/black.git
+[submodule ".vim/bundle/fzf.vim"]
+	path = .vim/bundle/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git

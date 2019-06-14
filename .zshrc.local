@@ -401,6 +401,9 @@ fi
 
 setopt histignorespace
 
+# FZF
+- [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # Up/down arrow history - http://ml.grml.org/pipermail/grml/2013-January/011444.html
 # Although unnecessary as page-up/down does same thing by default - http://ml.grml.org/pipermail/grml/2013-January/011447.html
 # autoload -Uz up-line-or-beginning-search

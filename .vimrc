@@ -124,3 +124,10 @@ nnoremap <C-H> <C-W><C-H>
 " System clipboard integration (for neovim)
 " (Requires xclip on GNU/Linux)
 set clipboard+=unnamedplus
+
+" Default FZP plugin
+set rtp+=/usr/local/opt/fzf
+
+" Disable modelines
+set modelines=0
+set nomodeline
