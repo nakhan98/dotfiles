@@ -125,8 +125,12 @@ nnoremap <C-H> <C-W><C-H>
 " (Requires xclip on GNU/Linux)
 set clipboard+=unnamedplus
 
-" Default FZP plugin
-set rtp+=/usr/local/opt/fzf
+" Default FZF stuff (fzf.vim plugin adds additional functionality)
+" If installed using Homebrew
+" set rtp+=/usr/local/opt/fzf
+
+" If installed using git
+set rtp+=~/.fzf
 
 " Disable modelines
 set modelines=0
