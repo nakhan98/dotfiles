@@ -89,7 +89,7 @@ hi Normal guibg=NONE ctermbg=NONE
 let g:jedi#completions_enabled = 0
 
 " CtrlP vim
-" set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_cmd='CtrlP :pwd'
 
 " Set mouse
 set mouse=a
