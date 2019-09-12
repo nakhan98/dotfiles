@@ -141,6 +141,6 @@ if executable('rg')
   set grepprg=rg\ --color=never\ --vimgrep
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
-  command -nargs=1 Rgpy cexpr system("rg -n -tpy <args>") | cw
-  command -nargs=* Rgc cexpr system("rg -n <args>") | cw
+  command -nargs=1 Rgpy cexpr system("rg --vimgrep -tpy <args>") | cw
+  command -nargs=* Rgc cexpr system("rg --vimgrep <args>") | cw
 endif
