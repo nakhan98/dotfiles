@@ -121,9 +121,12 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" System clipboard integration (for neovim)
+" System clipboard integration
 " (Requires xclip on GNU/Linux)
-set clipboard+=unnamedplus
+set clipboard=unnamed
+if has("unnamedplus") " X11 support
+    set clipboard+=unnamedplus
+endif
 
 " Default FZF stuff (fzf.vim plugin adds additional functionality)
 " If installed using Homebrew
