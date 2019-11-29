@@ -128,12 +128,15 @@ if has("unnamedplus") " X11 support
     set clipboard+=unnamedplus
 endif
 
-" Default FZF stuff (fzf.vim plugin adds additional functionality)
+" Default FZF stuff (fzf.vim plugin requires stuff from fzf installation)
 " If installed using Homebrew
 " set rtp+=/usr/local/opt/fzf
 
 " If installed using git
 set rtp+=~/.fzf
+
+" If install via debian package manager
+" source /usr/share/doc/fzf/examples/fzf.vim
 
 " Disable modelines
 set modelines=0
