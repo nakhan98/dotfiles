@@ -89,7 +89,10 @@ hi Normal guibg=NONE ctermbg=NONE
 let g:jedi#completions_enabled = 0
 
 " CtrlP vim
-let g:ctrlp_cmd='CtrlP :pwd'
+" let g:ctrlp_cmd='CtrlP :pwd'
+
+" Use fzf.vim as replacement for CtrlP
+nnoremap <silent> <C-p> :Files<CR>
 
 " Set mouse
 set mouse=a
@@ -145,8 +148,9 @@ set nomodeline
 " Ripgrep goodies!
 if executable('rg')
   set grepprg=rg\ --color=never\ --vimgrep
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-  let g:ctrlp_use_caching = 0
+  " If using CtrlP
+  " let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  " let g:ctrlp_use_caching = 0
   command -nargs=1 Rgpy cexpr system("rg --vimgrep -tpy <args>") | cw
   command -nargs=* Rgc cexpr system("rg --vimgrep <args>") | cw
 endif
