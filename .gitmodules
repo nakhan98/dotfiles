@@ -28,3 +28,6 @@
 [submodule ".vim/bundle/vim-commentary"]
 	path = .vim/bundle/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
+[submodule ".vim/bundle/vim-tmux-clipboard"]
+	path = .vim/bundle/vim-tmux-clipboard
+	url = https://github.com/roxma/vim-tmux-clipboard.git
