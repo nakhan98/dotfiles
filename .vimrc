@@ -1,9 +1,21 @@
-" Set python interpreter (for neovim) - requires `pynvim` python package
-" let g:python3_host_prog = '/usr/local/anaconda3/envs/black/bin/python'
+" Neovim specific settings
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+    " Set python interpreter (for neovim) - requires `pynvim` python package
+    " let g:python3_host_prog = '/usr/local/anaconda3/envs/black/bin/python'
 
-" set custom python (requires vim with dynamic python support eg. macvim)
-" set pythonthreedll=/usr/local/anaconda3/envs/testing_36/lib/libpython3.6m.dylib
-" set pythonthreehome=/usr/local/anaconda3/envs/testing_36
+" Standard Vim settings
+else
+    " set custom python (requires vim with dynamic python support eg. macvim)
+    " set pythonthreedll=/usr/local/anaconda3/envs/testing_36/lib/libpython3.6m.dylib
+    " set pythonthreehome=/usr/local/anaconda3/envs/testing_36
+
+    " Change cursor shape according to mode (note: neovim has this by default)
+    let &t_SI = "\<Esc>[6 q"
+    let &t_SR = "\<Esc>[4 q"
+    let &t_EI = "\<Esc>[2 q"
+endif
+
 
 " Turn on line numbering
 set nu
@@ -109,11 +121,6 @@ autocmd VimEnter * wincmd p
 " If you have a custom python virtualenv with `black` installed
 " let g:black_virtualenv = "/Users/nasef_khan/tmp/virtualenvs/black"
 " autocmd BufWritePre *.py execute ':Black'
-
-" Change cursor shape according to mode (note: neovim has this by default)
-let &t_SI = "\<Esc>[6 q"
-let &t_SR = "\<Esc>[4 q"
-let &t_EI = "\<Esc>[2 q"
 
 " YAML indentation
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
