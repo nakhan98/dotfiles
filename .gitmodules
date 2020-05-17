@@ -1,0 +1,33 @@
+[submodule ".vim/pack/plugins/start/indentLine"]
+	path = .vim/pack/plugins/start/indentLine
+	url = https://github.com/Yggdroot/indentLine.git
+[submodule ".vim/pack/plugins/start/jedi-vim"]
+	path = .vim/pack/plugins/start/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git
+[submodule ".vim/pack/plugins/start/nerdtree"]
+	path = .vim/pack/plugins/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule ".vim/pack/plugins/start/vim-airline"]
+	path = .vim/pack/plugins/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule ".vim/pack/plugins/start/vim-flake8"]
+	path = .vim/pack/plugins/start/vim-flake8
+	url = https://github.com/nvie/vim-flake8.git
+[submodule ".vim/pack/plugins/start/vim-python-pep8-indent"]
+	path = .vim/pack/plugins/start/vim-python-pep8-indent
+	url = https://github.com/hynek/vim-python-pep8-indent.git
+[submodule ".vim/pack/plugins/start/ctrlp.vim"]
+	path = .vim/pack/plugins/start/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule ".vim/pack/plugins/start/black"]
+	path = .vim/pack/plugins/start/black
+	url = https://github.com/python/black.git
+[submodule ".vim/pack/plugins/start/fzf.vim"]
+	path = .vim/pack/plugins/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
+[submodule ".vim/pack/plugins/start/vim-commentary"]
+	path = .vim/pack/plugins/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule ".vim/pack/plugins/start/vim-tmux-clipboard"]
+	path = .vim/pack/plugins/start/vim-tmux-clipboard
+	url = https://github.com/roxma/vim-tmux-clipboard.git
