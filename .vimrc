@@ -70,9 +70,6 @@ set hidden
 "Change encryption algo to blowfish
 set cm=blowfish2
 
-"Pathogen - https://github.com/tpope/vim-pathogen
-execute pathogen#infect()
-
 " Airline stuff
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
