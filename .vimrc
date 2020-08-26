@@ -58,8 +58,14 @@ set hls
 set lbr
 
 " Colouring
-colorscheme rdark-terminal2
-set background=dark
+if has("gui_vimr")
+    " Here goes some VimR specific settings like
+    colorscheme space
+    set background=dark
+else
+    colorscheme rdark-terminal2
+    set background=dark
+endif
 
 " Set backup
 set backup
