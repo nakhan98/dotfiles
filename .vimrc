@@ -155,6 +155,10 @@ set rtp+=~/.fzf
 set modelines=0
 set nomodeline
 
+" Vim-Go - force quickfix pane to be at the bottom
+" https://github.com/fatih/vim-go/issues/108
+" autocmd FileType qf if (getwininfo(win_getid())[0].loclist != 1) | wincmd J | endif
+
 " Ripgrep goodies!
 if executable('rg')
   set grepprg=rg\ --color=never\ --vimgrep
