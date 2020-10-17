@@ -429,3 +429,18 @@ setopt histignorespace
 
 # Assign extra identifier here
 # export EXTRA_IDENTIFIER=
+
+# Helper function to load http proxy (with authentication)
+function set_proxy() {
+    echo "Setting proxy configuration"
+    echo -n "Enter username:"
+    local username
+    read username
+    echo -n "Enter password:"
+    local password
+    read -s password
+    export HTTP_PROXY="http://${username}:${password}@IP:PORT"
+    export HTTPS_PROXY=$HTTP_PROXY
+    export http_proxy=$HTTP_PROXY
+    export https_proxy=$HTTP_PROXY
+}
