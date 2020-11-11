@@ -6,9 +6,9 @@ if has('nvim')
 
 " Standard Vim settings
 else
+    " Note: By default vim 8+ should automatically pick up the current python
+    " environment (including venvs) so the below should be unnecessary
     " set custom python (requires vim with dynamic python support eg. macvim)
-    " Note: By default vim 8 should automatically pick up the current python
-    " environment (including venvs)
     " set pythonthreedll=/usr/local/anaconda3/envs/testing_36/lib/libpython3.6m.dylib
     " set pythonthreehome=/usr/local/anaconda3/envs/testing_36
 
