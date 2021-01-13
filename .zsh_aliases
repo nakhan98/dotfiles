@@ -10,6 +10,8 @@
 # Run copy tmux buffer to mac clipboard script if not already running
 # ps aux | grep python | grep copy_tmux_buffer_to_sys_clipboard.py > /dev/null ||
 #    (/usr/bin/python ~/scripts/copy_tmux_buffer_to_sys_clipboard.py &) 
+# Note: above script appears to be missing. Similar script that can be used:
+# ./.tmux_buffer_watcher.py
 
 # Fortune
 # fortune
