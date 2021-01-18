@@ -152,8 +152,6 @@ set rtp+=~/.fzf
 
 " If install via debian package manager
 " source /usr/share/doc/fzf/examples/fzf.vim
-" or:
-" source /usr/share/doc/fzf/examples/plugin/fzf.vim
 
 " Disable modelines
 set modelines=0
