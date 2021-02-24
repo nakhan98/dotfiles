@@ -375,7 +375,9 @@ export EDITOR="$VISUAL"
 # takenote
 
 # 256 colours
-export TERM=xterm-256color
+export TERM=screen-256color
+# If above does not work:
+# export TERM=xterm-256color
 
 # Opam
 # . /home/nasef/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
