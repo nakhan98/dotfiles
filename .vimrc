@@ -69,6 +69,14 @@ else
     set background=dark
 endif
 
+" Colorcolumn
+set colorcolumn=80
+highlight ColorColumn ctermbg=8
+
+" Make vim transparent
+" https://stackoverflow.com/a/37720708
+hi Normal guibg=NONE ctermbg=NONE
+
 " Set backup
 set backup
 
@@ -93,14 +101,6 @@ set laststatus=2
 " See:
 " https://powerline.readthedocs.io/en/master/installation.html#patched-fonts
 " let g:airline_powerline_fonts=1
-
-" Colorcolumn
-set colorcolumn=80
-highlight ColorColumn ctermbg=8
-
-" Make vim transparent
-" https://stackoverflow.com/a/37720708
-hi Normal guibg=NONE ctermbg=NONE
 
 " Disable jedi autocomplete (can be slow)
 let g:jedi#completions_enabled = 0
