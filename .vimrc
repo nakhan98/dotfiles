@@ -63,11 +63,10 @@ set lbr
 if has("gui_vimr")
     " Here goes some VimR specific settings like
     colorscheme space
-    set background=dark
 else
-    colorscheme rdark-terminal2
-    set background=dark
+    colorscheme rdark-terminal3
 endif
+set background=dark
 
 " Colorcolumn
 set colorcolumn=80
