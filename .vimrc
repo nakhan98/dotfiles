@@ -62,7 +62,14 @@ set lbr
 " Colouring
 if has("gui_vimr")
     " Here goes some VimR specific settings like
-    colorscheme space
+    colorscheme spacegray
+else if has('nvim')
+    " Iterm/neovim
+    set termguicolors
+    let g:gruvbox_italics = 0
+    let g:gruvbox_contrast_dark = 'hard'
+    colo gruvbox
+    " colo spacegray
 else
     colorscheme rdark-terminal3
 endif
