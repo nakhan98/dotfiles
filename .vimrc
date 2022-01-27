@@ -18,7 +18,6 @@ else
     let &t_EI = "\<Esc>[2 q"
 endif
 
-
 " Turn on line numbering
 set nu
 
@@ -63,8 +62,9 @@ set lbr
 if has("gui_vimr")
     " Here goes some VimR specific settings like
     colorscheme spacegray
-else if has('nvim')
+elseif has('nvim')
     " Iterm/neovim
+    " Gruvbox config
     set termguicolors
     let g:gruvbox_italics = 0
     let g:gruvbox_contrast_dark = 'hard'
@@ -81,7 +81,7 @@ highlight ColorColumn ctermbg=8
 
 " Make vim transparent
 " https://stackoverflow.com/a/37720708
-hi Normal guibg=NONE ctermbg=NONE
+" hi Normal guibg=NONE ctermbg=NONE
 
 " Set backup
 set backup
@@ -123,6 +123,7 @@ set mouse=a
 " Nerdtree stuff
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 " Start NERDTree
 autocmd VimEnter * NERDTree
 " Go to previous (last accessed) window.
@@ -166,6 +167,10 @@ set nomodeline
 " Vim-Go - force quickfix pane to be at the bottom
 " https://github.com/fatih/vim-go/issues/108
 " autocmd FileType qf if (getwininfo(win_getid())[0].loclist != 1) | wincmd J | endif
+
+" When closing quickfix window prevent splits auto-resizing
+" https://www.reddit.com/r/vim/comments/e54dz0/comment/f9hpweq
+set noequalalways
 
 " Ripgrep goodies!
 if executable('rg')
