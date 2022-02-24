@@ -28,3 +28,6 @@
 [submodule ".vim/pack/plugins/start/vim-tmux-clipboard"]
 	path = .vim/pack/plugins/start/vim-tmux-clipboard
 	url = https://github.com/roxma/vim-tmux-clipboard.git
+[submodule ".vim/pack/plugins/start/vim-pydocstring"]
+	path = .vim/pack/plugins/start/vim-pydocstring
+	url = https://github.com/heavenshell/vim-pydocstring.git

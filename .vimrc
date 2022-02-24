@@ -181,3 +181,9 @@ if executable('rg')
   command -nargs=1 Rgpy cexpr system("rg --vimgrep -tpy <args>") | cw
   command -nargs=* Rgc cexpr system("rg --vimgrep <args>") | cw
 endif
+
+" Vim-pydocstring: https://github.com/heavenshell/vim-pydocstring
+" Require doq installed: https://pypi.org/project/doq/
+" let g:pydocstring_doq_path = "/path/to/bin/doq"
+" nmap <silent> <C-_> <Plug>(pydocstring)
+" let g:pydocstring_formatter = 'google'
