@@ -1,13 +1,15 @@
+" Neovim init.vim location: ~/.config/nvim/init.vim
+" Neovim colors dir: ~/.config/nvim/colors
+" Neovim plugin dir: ~/.local/share/nvim/site/pack/plugins/start
+
 " Neovim specific settings
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
     " Set python interpreter (for neovim) - requires `pynvim` python package
-    " let g:python3_host_prog = '/usr/local/anaconda3/envs/black/bin/python'
+    let g:python3_host_prog = '/opt/homebrew/anaconda3/envs/default/bin/python'
 
 " Standard Vim settings
 else
-    " Note: By default vim 8+ should automatically pick up the current python
-    " environment (including venvs) so the below should be unnecessary
     " set custom python (requires vim with dynamic python support eg. macvim)
     " set pythonthreedll=/usr/local/anaconda3/envs/testing_36/lib/libpython3.6m.dylib
     " set pythonthreehome=/usr/local/anaconda3/envs/testing_36
@@ -64,12 +66,13 @@ if has("gui_vimr")
     colorscheme spacegray
 elseif has('nvim')
     " Iterm/neovim
-    " Gruvbox config
+    " gruvbox config
     set termguicolors
     let g:gruvbox_italics = 0
     let g:gruvbox_contrast_dark = 'hard'
     colo gruvbox
-    " colo spacegray
+
+    " colorscheme rdark-terminal3
 else
     colorscheme rdark-terminal3
 endif
@@ -77,7 +80,7 @@ set background=dark
 
 " Colorcolumn
 set colorcolumn=80
-highlight ColorColumn ctermbg=8
+" highlight ColorColumn ctermbg=8
 
 " Make vim transparent
 " https://stackoverflow.com/a/37720708
@@ -90,7 +93,7 @@ set backup
 set hidden
 
 "Change encryption algo to blowfish
-set cm=blowfish2
+" set cm=blowfish2
 
 " Airline stuff
 " Enable the list of buffers
@@ -153,9 +156,10 @@ endif
 " Default FZF stuff (fzf.vim plugin requires stuff from fzf installation)
 " If installed using Homebrew
 " set rtp+=/usr/local/opt/fzf
+set rtp+=/opt/homebrew/opt/fzf
 
 " If installed using git
-set rtp+=~/.fzf
+" set rtp+=~/.fzf
 
 " If install via debian package manager
 " source /usr/share/doc/fzf/examples/fzf.vim
@@ -182,8 +186,9 @@ if executable('rg')
   command -nargs=* Rgc cexpr system("rg --vimgrep <args>") | cw
 endif
 
-" Vim-pydocstring: https://github.com/heavenshell/vim-pydocstring
+
+" Testing vim-pydocstring
 " Require doq installed: https://pypi.org/project/doq/
-" let g:pydocstring_doq_path = "/path/to/bin/doq"
 " nmap <silent> <C-_> <Plug>(pydocstring)
+" let g:pydocstring_doq_path = "/usr/local/anaconda3/envs/default/bin/doq"
 " let g:pydocstring_formatter = 'google'

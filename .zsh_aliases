@@ -64,6 +64,11 @@ alias c8="awk '{print \$8}'"
 alias c9="awk '{print \$9}'"
 
 # Replace BSD utils with GNU equivelants 
+# Brew packages to install: coreutils findutils gnu-sed grep gnu-tar gawk gnutls
+# What about: gzip, gnu-indent, watch, ed etc. ?
+# For more info:
+# - https://apple.stackexchange.com/questions/69223
+# - https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
 alias b2sum='/usr/local/bin/gb2sum'
 alias base32='/usr/local/bin/gbase32'
 alias base64='/usr/local/bin/gbase64'
@@ -179,6 +184,8 @@ alias whoami='/usr/local/bin/gwhoami'
 alias xargs='/usr/local/bin/gxargs'
 alias yes='/usr/local/bin/gyes'
 alias nc='/usr/local/bin/netcat'
+alias sed='gsed'
+alias zcat="/usr/bin/gzcat"
 
 # Git aliases
 alias g='git'
@@ -233,6 +240,7 @@ alias gfa='git fetch --all --prune'
 alias gfo='git fetch origin'
 alias gg='git gui citool'
 alias gga='git gui citool --amend'
+alias ggpur='ggu'
 alias ggpull='git pull origin $(git_current_branch)'
 alias ggpush='git push origin $(git_current_branch)'
 alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
@@ -307,3 +315,6 @@ alias gupv='git pull --rebase -v'
 alias glum='git pull upstream master'
 alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify -m "--wip-- [skip ci]"'
+alias gitvimdiff="git difftool --tool=vimdiff3"
+# alias altfox="/Applications/Firefox\ Developer\ Edition.app/Contents/MacOS/firefox -P alternative-profile --new-instance &"
+# alias mvim="mvim -v"
