@@ -1,4 +1,11 @@
---fields=+l
---languages=python
---python-kinds=-iv
+--python-kinds=-i
+--exclude=*/build/*
+--exclude=*/html/*
+--exclude=*/node_modules/*
 --exclude=.git
+
+# Previous settings
+# --fields=+l
+# --languages=python
+# --python-kinds=-iv
+# --exclude=.git
