@@ -51,6 +51,12 @@ alias scl='killall ssh-agent; eval `ssh-agent` && ssh-add'
 alias tma='tmux attach -d'
 alias tailf="tail -f"
 alias dirs="dirs -v"
+alias vim=nvim
+alias view="nvim -R"
+alias diff_fw='diff -W $(( $(tput cols) - 2 ))'
+# alias altfox="/Applications/Firefox\ Developer\ Edition.app/Contents/MacOS/firefox -P alternative-profile --new-instance &"
+# alias mvim="mvim -v"
+
 
 # Awk aliases for getting n-th column
 alias c1="awk '{print \$1}'"
@@ -62,12 +68,6 @@ alias c6="awk '{print \$6}'"
 alias c7="awk '{print \$7}'"
 alias c8="awk '{print \$8}'"
 alias c9="awk '{print \$9}'"
-
-# Other aliases
-alias vim=nvim
-alias view="nvim -R"
-# alias altfox="/Applications/Firefox\ Developer\ Edition.app/Contents/MacOS/firefox -P alternative-profile --new-instance &"
-# alias mvim="mvim -v"
 
 # Replace BSD utils with GNU equivelants 
 # Brew packages to install: coreutils findutils gnu-sed grep gnu-tar gawk gnutls
