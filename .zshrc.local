@@ -409,6 +409,8 @@ setopt histignorespace
 # If FZF installed via Debian package manager
 # source /usr/share/doc/fzf/examples/key-bindings.zsh
 # source /usr/share/zsh/vendor-completions/_fzf
+# Debian 11
+# source /usr/share/doc/fzf/examples/completion.zsh
 
 # Up/down arrow history - http://ml.grml.org/pipermail/grml/2013-January/011444.html
 # Although unnecessary as page-up/down does same thing by default - http://ml.grml.org/pipermail/grml/2013-January/011447.html
