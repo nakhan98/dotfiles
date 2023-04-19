@@ -21,6 +21,9 @@ nitrogen --restore &
 # Two finger right click
 (synclient TapButton1=1 TapButton2=3 TapButton3=3; syndaemon -t -k -i 2 -d) &
 
+# Slow mouse acceleration (check "xinput list" for device ID")
+xinput --set-prop "8" 'libinput Accel Speed' -0.5 &
+
 # Reverse scrolling
 synclient VertScrollDelta=-111
 synclient HorizScrollDelta=-111
