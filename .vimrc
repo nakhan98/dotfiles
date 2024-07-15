@@ -194,6 +194,7 @@ endif
 " let g:pydocstring_formatter = 'google'
 
 " For chatgpt-vim
+" Use my fork (not added to plugins yet): https://github.com/nakhan98/vim-chatgpt/tree/develop
 " let g:openai_base_url='base_url_here'
 " let g:split_ratio=2
 " vmap <silent> <leader>0 <Plug>(chatgpt-menu)
