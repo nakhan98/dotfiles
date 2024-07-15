@@ -187,9 +187,14 @@ if executable('rg')
   command -nargs=* Rgc cexpr system("rg --vimgrep <args>") | cw
 endif
 
-
 " Testing vim-pydocstring
 " Require doq installed: https://pypi.org/project/doq/
 " nmap <silent> <C-_> <Plug>(pydocstring)
 " let g:pydocstring_doq_path = "/usr/local/anaconda3/envs/default/bin/doq"
 " let g:pydocstring_formatter = 'google'
+
+" For chatgpt-vim
+" let g:openai_base_url='base_url_here'
+" let g:split_ratio=2
+" vmap <silent> <leader>0 <Plug>(chatgpt-menu)
+" let g:chat_gpt_custom_prompts = {'complete': 'Can you complete/implement/fix this?'}
