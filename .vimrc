@@ -1,6 +1,11 @@
 " Neovim init.vim location: ~/.config/nvim/init.vim
-" Neovim colors dir: ~/.config/nvim/colors
+" Neovim colors dir: ~/.config/nvim/colors (and/or ~/.local/share/nvim/site/colors)
 " Neovim plugin dir: ~/.local/share/nvim/site/pack/plugins/start
+
+" Share config between vim and neovim:
+" mkdir -vp ~/.local/share/nvim ~/.config/nvim
+" ln -vs ~/.vim ~/.local/share/nvim/site
+" ln -vs ~/.vimrc ~/.config/nvim/init.vim
 
 " Neovim specific settings
 if has('nvim')
