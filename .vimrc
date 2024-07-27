@@ -117,6 +117,9 @@ set laststatus=2
 " https://powerline.readthedocs.io/en/master/installation.html#patched-fonts
 " let g:airline_powerline_fonts=1
 
+" Vim airline theme
+" let g:airline_theme='base16_gruvbox_dark_hard'
+
 " Disable jedi autocomplete (can be slow)
 let g:jedi#completions_enabled = 0
 
