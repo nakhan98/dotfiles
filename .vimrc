@@ -73,7 +73,7 @@ elseif has('nvim')
     " Iterm/neovim
     " gruvbox config
     set termguicolors
-    # Why is the below needed? Disabling for now
+    " Why is the below needed? Disabling for now
     " let g:gruvbox_italics = 0
     let g:gruvbox_contrast_dark = 'hard'
     colo gruvbox
