@@ -77,8 +77,15 @@ elseif has('nvim')
     " let g:gruvbox_italics = 0
     let g:gruvbox_contrast_dark = 'hard'
     colo gruvbox
-    " Vim airline theme
+
+    " Airline Gruvbox theme shipped with vim-airline-themes
     let g:airline_theme='base16_gruvbox_dark_hard'
+
+    " Airline Gruvbox theme from gruvbox repo
+    " TODO: Check in below to git
+    " Download from https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/airline/themes/gruvbox.vim
+    " and place in ~/.vim/autoload/airline/themes/
+    " let g:airline_theme='gruvbox'
 else
     colorscheme rdark-terminal3
 endif
