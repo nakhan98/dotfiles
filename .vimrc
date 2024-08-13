@@ -7,6 +7,26 @@
 " ln -vs ~/.vim ~/.local/share/nvim/site
 " ln -vs ~/.vimrc ~/.config/nvim/init.vim
 
+" vim-plug
+" Delete/rename .vim/pack/ if using this
+call plug#begin()
+Plug 'Yggdroot/indentLine'
+Plug 'davidhalter/jedi-vim'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'nvie/vim-flake8'
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'python/black'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-commentary'
+Plug 'roxma/vim-tmux-clipboard'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'github/copilot.vim'
+" Plug 'nakhan98/vim-chatgpt', { 'branch': 'develop' }
+" Plug 'morhetz/gruvbox'
+" Plug 'heavenshell/vim-pydocstring'
+call plug#end()
+
 " Neovim specific settings
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
@@ -70,21 +90,15 @@ if has("gui_vimr")
     " Here goes some VimR specific settings like
     colorscheme spacegray
 elseif has('nvim')
-    " Iterm/neovim
-    " gruvbox config
     set termguicolors
-    " Why is the below needed? Disabling for now
-    " let g:gruvbox_italics = 0
-    let g:gruvbox_contrast_dark = 'hard'
-    colo gruvbox
 
-    " Airline Gruvbox theme shipped with vim-airline-themes
-    let g:airline_theme='base16_gruvbox_dark_hard'
-
-    " Airline Gruvbox theme from gruvbox repo
-    " TODO: Check in below to git
-    " Download from https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/airline/themes/gruvbox.vim
-    " and place in ~/.vim/autoload/airline/themes/
+    " gruvbox config
+    "" let g:gruvbox_italics = 0
+    "let g:gruvbox_contrast_dark = 'hard'
+    "colo gruvbox
+    "" Pre-packaged vim airline theme 
+    "let g:airline_theme='base16_gruvbox_dark_hard'
+    " Default gruvbox airline theme
     " let g:airline_theme='gruvbox'
 else
     colorscheme rdark-terminal3
@@ -206,7 +220,6 @@ endif
 " let g:pydocstring_formatter = 'google'
 
 " For chatgpt-vim
-" Use my fork (not added to plugins yet): https://github.com/nakhan98/vim-chatgpt/tree/develop
 " let g:openai_base_url='base_url_here'
 " let g:split_ratio=2
 " vmap <silent> <leader>0 <Plug>(chatgpt-menu)
