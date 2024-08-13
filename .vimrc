@@ -21,6 +21,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'vim-airline/vim-airline-themes'
+" Plug 'hashivim/vim-terraform'
 " Plug 'github/copilot.vim'
 " Plug 'nakhan98/vim-chatgpt', { 'branch': 'develop' }
 " Plug 'morhetz/gruvbox'
