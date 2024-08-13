@@ -50,7 +50,7 @@ alias scl='killall ssh-agent; eval `ssh-agent` && ssh-add'
 
 alias tma='tmux attach -d'
 alias tailf="tail -f"
-alias dirs="dirs -v"
+# alias dirs="dirs -v"
 alias vim=nvim
 alias view="nvim -R"
 alias diff_fw='diff -W $(( $(tput cols) - 2 ))'
