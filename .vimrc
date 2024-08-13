@@ -120,7 +120,7 @@ set backup
 " Edit multiple buffers without saving 
 set hidden
 
-"Change encryption algo to blowfish
+" Enable in vim for stronger encryption
 " set cm=blowfish2
 
 " Airline stuff
