@@ -72,7 +72,7 @@ filetype on
 filetype plugin on
 
 " Expand tab to spaces
-set et 
+set et
 
 " Change to directory of file
 " set autochdir
@@ -97,7 +97,7 @@ elseif has('nvim')
     "" let g:gruvbox_italics = 0
     "let g:gruvbox_contrast_dark = 'hard'
     "colo gruvbox
-    "" Pre-packaged vim airline theme 
+    "" Pre-packaged vim airline theme
     "let g:airline_theme='base16_gruvbox_dark_hard'
     " Default gruvbox airline theme
     " let g:airline_theme='gruvbox'
@@ -117,7 +117,7 @@ set colorcolumn=80
 " Set backup
 set backup
 
-" Edit multiple buffers without saving 
+" Edit multiple buffers without saving
 set hidden
 
 " Enable in vim for stronger encryption
