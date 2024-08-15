@@ -405,6 +405,8 @@ setopt histignorespace
 
 # FZF
 - [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# New way
+# source <(fzf --zsh)
 
 # If FZF installed via Debian package manager
 # source /usr/share/doc/fzf/examples/key-bindings.zsh
