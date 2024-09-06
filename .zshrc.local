@@ -436,17 +436,18 @@ setopt histignorespace
 # Assign extra identifier here
 # export EXTRA_IDENTIFIER=
 
-# Helper function to load http proxy (with authentication)
-function set_proxy() {
-    echo "Setting proxy configuration"
-    echo -n "Enter username:"
-    local username
-    read username
-    echo -n "Enter password:"
-    local password
-    read -s password
-    export HTTP_PROXY="http://${username}:${password}@IP:PORT"
-    export HTTPS_PROXY=$HTTP_PROXY
-    export http_proxy=$HTTP_PROXY
-    export https_proxy=$HTTP_PROXY
-}
+
+# Replace BSD utils with GNU equivalents
+# Brew packages to install: coreutils findutils gnu-sed grep gnu-tar gawk gnutls less gzip watch ed
+# What about: gnu-indent, gnu-which etc. ?
+# For more info:
+# - https://apple.stackexchange.com/questions/69223
+# - https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
+# - https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
+# HOMEBREW_PREFIX=$(brew --prefix)
+# for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin
+# do
+#     export PATH="$d:$PATH"
+# done
+# unset HOMEBREW_PREFIX
+

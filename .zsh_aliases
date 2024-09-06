@@ -57,7 +57,6 @@ alias diff_fw='diff -W $(( $(tput cols) - 2 ))'
 # alias altfox="/Applications/Firefox\ Developer\ Edition.app/Contents/MacOS/firefox -P alternative-profile --new-instance &"
 # alias mvim="mvim -v"
 
-
 # Awk aliases for getting n-th column
 alias c1="awk '{print \$1}'"
 alias c2="awk '{print \$2}'"
@@ -68,129 +67,6 @@ alias c6="awk '{print \$6}'"
 alias c7="awk '{print \$7}'"
 alias c8="awk '{print \$8}'"
 alias c9="awk '{print \$9}'"
-
-# Replace BSD utils with GNU equivelants 
-# Brew packages to install: coreutils findutils gnu-sed grep gnu-tar gawk gnutls
-# What about: gzip, gnu-indent, watch, ed etc. ?
-# For more info:
-# - https://apple.stackexchange.com/questions/69223
-# - https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
-alias b2sum='/opt/homebrew/bin/gb2sum'
-alias base32='/opt/homebrew/bin/gbase32'
-alias base64='/opt/homebrew/bin/gbase64'
-alias basename='/opt/homebrew/bin/gbasename'
-alias cat='/opt/homebrew/bin/gcat'
-alias chcon='/opt/homebrew/bin/gchcon'
-alias chgrp='/opt/homebrew/bin/gchgrp'
-alias chmod='/opt/homebrew/bin/gchmod'
-alias chown='/opt/homebrew/bin/gchown'
-alias chroot='/opt/homebrew/bin/gchroot'
-alias cksum='/opt/homebrew/bin/gcksum'
-alias comm='/opt/homebrew/bin/gcomm'
-alias cp='/opt/homebrew/bin/gcp'
-alias csplit='/opt/homebrew/bin/gcsplit'
-alias cut='/opt/homebrew/bin/gcut'
-alias date='/opt/homebrew/bin/gdate'
-alias dd='/opt/homebrew/bin/gdd'
-alias df='/opt/homebrew/bin/gdf'
-alias dir='/opt/homebrew/bin/gdir'
-alias dircolors='/opt/homebrew/bin/gdircolors'
-alias dirname='/opt/homebrew/bin/gdirname'
-alias du='/opt/homebrew/bin/gdu'
-alias echo='/opt/homebrew/bin/gecho'
-alias egrep='/opt/homebrew/bin/gegrep'
-alias env='/opt/homebrew/bin/genv'
-alias expand='/opt/homebrew/bin/gexpand'
-alias expr='/opt/homebrew/bin/gexpr'
-alias factor='/opt/homebrew/bin/gfactor'
-alias false='/opt/homebrew/bin/gfalse'
-alias fgrep='/opt/homebrew/bin/gfgrep'
-alias find='/opt/homebrew/bin/gfind'
-alias fmt='/opt/homebrew/bin/gfmt'
-alias fold='/opt/homebrew/bin/gfold'
-alias grep='/opt/homebrew/bin/ggrep'
-alias groups='/opt/homebrew/bin/ggroups'
-alias head='/opt/homebrew/bin/ghead'
-alias hostid='/opt/homebrew/bin/ghostid'
-alias id='/opt/homebrew/bin/gid'
-alias install='/opt/homebrew/bin/ginstall'
-alias join='/opt/homebrew/bin/gjoin'
-# alias kill='/opt/homebrew/bin/gkill'
-alias libtool='/opt/homebrew/bin/glibtool'
-alias libtoolize='/opt/homebrew/bin/glibtoolize'
-alias link='/opt/homebrew/bin/glink'
-alias ln='/opt/homebrew/bin/gln'
-alias locate='/opt/homebrew/bin/glocate'
-alias logname='/opt/homebrew/bin/glogname'
-alias ls='/opt/homebrew/bin/gls --color'
-alias md5sum='/opt/homebrew/bin/gmd5sum'
-alias mkdir='/opt/homebrew/bin/gmkdir'
-alias mkfifo='/opt/homebrew/bin/gmkfifo'
-alias mknod='/opt/homebrew/bin/gmknod'
-alias mktemp='/opt/homebrew/bin/gmktemp'
-alias mv='/opt/homebrew/bin/gmv'
-alias nice='/opt/homebrew/bin/gnice'
-alias nl='/opt/homebrew/bin/gnl'
-alias nohup='/opt/homebrew/bin/gnohup'
-alias nproc='/opt/homebrew/bin/gnproc'
-alias numfmt='/opt/homebrew/bin/gnumfmt'
-alias od='/opt/homebrew/bin/god'
-alias paste='/opt/homebrew/bin/gpaste'
-alias pathchk='/opt/homebrew/bin/gpathchk'
-alias pinky='/opt/homebrew/bin/gpinky'
-alias pr='/opt/homebrew/bin/gpr'
-alias printenv='/opt/homebrew/bin/gprintenv'
-alias printf='/opt/homebrew/bin/gprintf'
-alias ptx='/opt/homebrew/bin/gptx'
-alias pwd='/opt/homebrew/bin/gpwd'
-alias readlink='/opt/homebrew/bin/greadlink'
-alias realpath='/opt/homebrew/bin/grealpath'
-alias rm='/opt/homebrew/bin/grm'
-alias rmdir='/opt/homebrew/bin/grmdir'
-alias runcon='/opt/homebrew/bin/gruncon'
-alias seq='/opt/homebrew/bin/gseq'
-alias sha1sum='/opt/homebrew/bin/gsha1sum'
-alias sha224sum='/opt/homebrew/bin/gsha224sum'
-alias sha256sum='/opt/homebrew/bin/gsha256sum'
-alias sha384sum='/opt/homebrew/bin/gsha384sum'
-alias sha512sum='/opt/homebrew/bin/gsha512sum'
-alias shred='/opt/homebrew/bin/gshred'
-alias shuf='/opt/homebrew/bin/gshuf'
-alias sleep='/opt/homebrew/bin/gsleep'
-alias sort='/opt/homebrew/bin/gsort'
-alias split='/opt/homebrew/bin/gsplit'
-alias stat='/opt/homebrew/bin/gstat'
-alias stdbuf='/opt/homebrew/bin/gstdbuf'
-alias stty='/opt/homebrew/bin/gstty'
-alias sum='/opt/homebrew/bin/gsum'
-alias sync='/opt/homebrew/bin/gsync'
-alias tac='/opt/homebrew/bin/gtac'
-alias tail='/opt/homebrew/bin/gtail'
-alias tar='/opt/homebrew/bin/gtar'
-alias tee='/opt/homebrew/bin/gtee'
-alias test='/opt/homebrew/bin/gtest'
-alias timeout='/opt/homebrew/bin/gtimeout'
-alias touch='/opt/homebrew/bin/gtouch'
-alias tr='/opt/homebrew/bin/gtr'
-alias true='/opt/homebrew/bin/gtrue'
-alias truncate='/opt/homebrew/bin/gtruncate'
-alias tsort='/opt/homebrew/bin/gtsort'
-alias tty='/opt/homebrew/bin/gtty'
-alias uname='/opt/homebrew/bin/guname'
-alias unexpand='/opt/homebrew/bin/gunexpand'
-alias uniq='/opt/homebrew/bin/guniq'
-alias unlink='/opt/homebrew/bin/gunlink'
-# alias updatedb='/opt/homebrew/bin/gupdatedb'
-alias uptime='/opt/homebrew/bin/guptime'
-alias users='/opt/homebrew/bin/gusers'
-alias vdir='/opt/homebrew/bin/gvdir'
-alias wc='/opt/homebrew/bin/gwc'
-alias who='/opt/homebrew/bin/gwho'
-alias whoami='/opt/homebrew/bin/gwhoami'
-alias xargs='/opt/homebrew/bin/gxargs'
-alias yes='/opt/homebrew/bin/gyes'
-alias nc='/opt/homebrew/bin/netcat'
-alias sed='gsed'
 
 # Git aliases
 alias g='git'
@@ -321,3 +197,18 @@ alias glum='git pull upstream master'
 alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify -m "--wip-- [skip ci]"'
 alias gitvimdiff="git difftool --tool=vimdiff3"
+
+# Helper function to load http proxy (with authentication)
+function set_proxy() {
+    echo "Setting proxy configuration"
+    echo -n "Enter username:"
+    local username
+    read username
+    echo -n "Enter password:"
+    local password
+    read -s password
+    export HTTP_PROXY="http://${username}:${password}@IP:PORT"
+    export HTTPS_PROXY=$HTTP_PROXY
+    export http_proxy=$HTTP_PROXY
+    export https_proxy=$HTTP_PROXY
+}
