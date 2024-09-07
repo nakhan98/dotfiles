@@ -55,6 +55,7 @@ alias vim=nvim
 alias view="nvim -R"
 alias diff_fw='diff -W $(( $(tput cols) - 2 ))'
 # alias altfox="/Applications/Firefox\ Developer\ Edition.app/Contents/MacOS/firefox -P alternative-profile --new-instance &"
+# alias altwolf="/Applications/LibreWolf.app/Contents/MacOS/librewolf -P alternative-profile --new-instance &"
 # alias mvim="mvim -v"
 
 # Awk aliases for getting n-th column
