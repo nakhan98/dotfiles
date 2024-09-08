@@ -362,8 +362,12 @@ zstyle ':prompt:grml:left:setup' items rc extra_identifier conda virtual-env cha
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+# if [ -f ~/.bash_aliases ]; then
+#     . ~/.bash_aliases
+# fi
+
+if [ -f ~/.zsh_aliases ]; then
+    . ~/.zsh_aliases
 fi
 
 # Setting default editor to vim
@@ -374,10 +378,8 @@ export EDITOR="$VISUAL"
 # Run PyTakeNote
 # takenote
 
-# 256 colours
-export TERM=xterm-256color
-# Or for better tmux compatibility
-# export TERM=screen-256color
+# Enable if colour issues
+# export TERM=xterm-256color
 
 # Opam
 # . /home/nasef/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
