@@ -224,4 +224,7 @@ endif
 " let g:openai_base_url='base_url_here'
 " let g:split_ratio=2
 " vmap <silent> <leader>0 <Plug>(chatgpt-menu)
-" let g:chat_gpt_custom_prompts = {'complete': 'Can you complete/implement/fix this?'}
+" let g:chat_gpt_custom_prompts = {'complete': 'Can you complete/implement/fix this?', 'chat': ''}
+" let g:chat_gpt_custom_persona = {'fixed': 'You are a helpful expert programmer. We are working together to solve complex coding challenges and I need your help. Please make sure to wrap all code blocks in ``` and annotate the programming language you are using.'}
+" let g:chat_persona='fixed'
+" let g:openai_api_key='<enter_key_here>'

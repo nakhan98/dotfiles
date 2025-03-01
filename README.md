@@ -1,7 +1,17 @@
 # dotfiles
 
 ## Install vim plugins (using vim-plug)
-Rename/delete `.vim/pack`. Then:
+
+* Create (neo)vim config directories and files:
+```
+cp -rv .vim* ~/
+mv ~/.vim/pack ~/.vim/pack_old
+mkdir -vp ~/.local/share/nvim ~/.config/nvim
+ln -vs ~/.vim ~/.local/share/nvim/site
+ln -vs ~/.vimrc ~/.config/nvim/init.vim
+```
+
+* Then:
 
 > Reload the file or restart Vim, then you can,
 
