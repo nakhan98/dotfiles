@@ -453,3 +453,5 @@ setopt histignorespace
 # done
 # unset HOMEBREW_PREFIX
 
+# Github Copilot CLI
+# eval "$(gh copilot alias -- zsh)"
