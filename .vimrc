@@ -24,6 +24,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'hashivim/vim-terraform'
 " Plug 'github/copilot.vim'
 " Plug 'nakhan98/vim-chatgpt', { 'branch': 'develop' }
+" Plug '~/dev/github/vim-chatgpt' " Can also be used for local development
 " Plug 'morhetz/gruvbox'
 " Plug 'heavenshell/vim-pydocstring'
 call plug#end()
