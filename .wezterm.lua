@@ -13,6 +13,12 @@ return {
       mods = "CMD",
       action = wezterm.action.ToggleFullScreen,
     },
+    -- Disable toggling fullscreen with ALT+Enter (for aider)
+    {
+      key = "Enter",
+      mods = "ALT",
+      action = "DisableDefaultAssignment",
+    },
     -- Toggle tab bar visibility with CMD+SHIFT+t
     {
       key = "t",
