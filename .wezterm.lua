@@ -1,6 +1,8 @@
 -- ~/.wezterm.lua
 local wezterm = require 'wezterm'
 
+-- Pane switching workaround from:
+-- https://github.com/wezterm/wezterm/issues/3505#issuecomment-1804708455
 -- Track last active pane per tab for pane switching
 local last_active_by_tab = {}
 
