@@ -104,7 +104,7 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("lualine").setup({
-        options = { theme = "auto" },
+        options = { theme = "wombat" },
         tabline = {
           lualine_a = { "buffers" },
           lualine_z = { "tabs" },
