@@ -92,7 +92,7 @@ require("lazy").setup({
     lazy     = false,
     priority = 1000,
     config   = function()
-      vim.cmd("colorscheme tokyonight")
+      -- vim.cmd("colorscheme tokyonight")
     end,
   },
 
@@ -104,7 +104,7 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("lualine").setup({
-        options = { theme = "tokyonight" },
+        options = { theme = "auto" },
         tabline = {
           lualine_a = { "buffers" },
           lualine_z = { "tabs" },
