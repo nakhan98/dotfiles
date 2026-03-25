@@ -42,6 +42,7 @@ opt.clipboard     = "unnamedplus" -- system clipboard
 opt.backup        = true
 opt.modelines     = 0
 opt.modeline      = false
+opt.hidden        = true           -- allow switching buffers without saving
 opt.equalalways   = false          -- prevent splits auto-resizing on close
 opt.laststatus    = 2
 opt.showtabline   = 2
@@ -233,6 +234,11 @@ require("lazy").setup({
   -- Tmux clipboard integration
   -- --------------------------------------------------------------------------
   { "roxma/vim-tmux-clipboard" },
+
+  -- --------------------------------------------------------------------------
+  -- Copilot
+  -- --------------------------------------------------------------------------
+  -- { "github/copilot.vim" },
 
 }, {
   checker = { enabled = false }, -- disable automatic update checks
