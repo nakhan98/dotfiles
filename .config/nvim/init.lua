@@ -15,13 +15,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- FZF runtime path (required by fzf.vim)
-if vim.fn.has("mac") == 1 then
-  vim.opt.rtp:append("/opt/homebrew/opt/fzf")
-else
-  vim.opt.rtp:append(vim.fn.expand("~/.fzf"))
-end
-
 -- ============================================================================
 -- Options
 -- ============================================================================
@@ -64,7 +57,7 @@ map("n", "<C-L>", "<C-W><C-L>")
 map("n", "<C-H>", "<C-W><C-H>")
 
 -- FZF
-map("n", "<C-p>", ":Files<CR>", { silent = true })
+map("n", "<C-p>", function() require("fzf-lua").files() end, { silent = true })
 
 -- ============================================================================
 -- Autocommands
@@ -221,7 +214,12 @@ require("lazy").setup({
   -- --------------------------------------------------------------------------
   -- FZF
   -- --------------------------------------------------------------------------
-  { "junegunn/fzf.vim" },
+  {
+    "ibhagwan/fzf-lua",
+    config = function()
+      require("fzf-lua").setup({})
+    end,
+  },
 
   -- --------------------------------------------------------------------------
   -- Commenting
