@@ -49,12 +49,6 @@ opt.showtabline   = 2
 -- Ripgrep
 if vim.fn.executable("rg") == 1 then
   opt.grepprg = "rg --color=never --vimgrep"
-  vim.api.nvim_create_user_command("Rgpy", function(args)
-    vim.cmd("cexpr system('rg --vimgrep -tpy " .. args.args .. "') | cw")
-  end, { nargs = 1 })
-  vim.api.nvim_create_user_command("Rgc", function(args)
-    vim.cmd("cexpr system('rg --vimgrep " .. args.args .. "') | cw")
-  end, { nargs = "*" })
 end
 
 -- ============================================================================

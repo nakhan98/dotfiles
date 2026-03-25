@@ -97,6 +97,4 @@ endif
 " Ripgrep
 if executable('rg')
     set grepprg=rg\ --color=never\ --vimgrep
-    command -nargs=1 Rgpy cexpr system("rg --vimgrep -tpy <args>") | cw
-    command -nargs=* Rgc cexpr system("rg --vimgrep <args>") | cw
 endif
