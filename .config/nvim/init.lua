@@ -168,7 +168,7 @@ require("lazy").setup({
 
   -- --------------------------------------------------------------------------
   -- LSP (replaces jedi-vim)
-  -- Requires: pip install pyright  OR  npm install -g pyright
+  -- Requires: uv tool install pyright
   -- --------------------------------------------------------------------------
   {
     "neovim/nvim-lspconfig",
@@ -179,7 +179,7 @@ require("lazy").setup({
 
   -- --------------------------------------------------------------------------
   -- Formatting (replaces python/black plugin)
-  -- Requires: pip install black
+  -- Requires: uv tool install black
   -- Uncomment format_on_save to auto-format on write.
   -- --------------------------------------------------------------------------
   {
@@ -196,7 +196,7 @@ require("lazy").setup({
 
   -- --------------------------------------------------------------------------
   -- Linting (replaces vim-flake8)
-  -- Requires: pip install flake8  (or ruff — swap below)
+  -- Requires: uv tool install flake8  (or ruff — swap below)
   -- --------------------------------------------------------------------------
   {
     "mfussenegger/nvim-lint",
