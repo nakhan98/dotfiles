@@ -13,14 +13,19 @@ call plug#begin()
 Plug 'Yggdroot/indentLine'
 Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
 Plug 'nvie/vim-flake8'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'python/black'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'roxma/vim-tmux-clipboard'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'folke/tokyonight.nvim'
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'MeanderingProgrammer/render-markdown.nvim'
+
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
 " Plug 'hashivim/vim-terraform'
 " Plug 'github/copilot.vim'
 " Plug 'nakhan98/vim-chatgpt', { 'branch': 'develop' }
@@ -31,7 +36,7 @@ call plug#end()
 
 " Neovim specific settings
 if has('nvim')
-    tnoremap <Esc> <C-\><C-n>
+    " tnoremap <Esc> <C-\><C-n>
     " Set python interpreter (for neovim) - requires `pynvim` python package
     let g:python3_host_prog = '/opt/homebrew/anaconda3/envs/default/bin/python'
 
@@ -126,14 +131,34 @@ set hidden
 
 " Airline stuff
 " Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Force start airline
 set laststatus=2
+
+" Always show the tabline (required for lightline-bufferline to display buffers)
+set showtabline=2
+
+ let g:lightline = {
+       \ 'colorscheme': 'wombat',
+       \ 'active': {
+       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
+       \ },
+       \ 'tabline': {
+       \   'left': [ ['buffers'] ],
+       \   'right': [ ['close'] ]
+       \ },
+       \ 'component_expand': {
+       \   'buffers': 'lightline#bufferline#buffers'
+       \ },
+       \ 'component_type': {
+       \   'buffers': 'tabsel'
+       \ }
+       \ }
 
 " Use powerline fonts
 " See:
