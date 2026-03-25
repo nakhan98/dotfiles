@@ -179,7 +179,7 @@ require("lazy").setup({
 
   -- --------------------------------------------------------------------------
   -- Formatting (replaces python/black plugin)
-  -- Requires: uv tool install black
+  -- Requires: uv tool install ruff
   -- Uncomment format_on_save to auto-format on write.
   -- --------------------------------------------------------------------------
   {
@@ -187,7 +187,7 @@ require("lazy").setup({
     config = function()
       require("conform").setup({
         formatters_by_ft = {
-          python = { "black" },
+          python = { "ruff_format" },
         },
         -- format_on_save = { timeout_ms = 500, lsp_fallback = true },
       })
@@ -196,13 +196,13 @@ require("lazy").setup({
 
   -- --------------------------------------------------------------------------
   -- Linting (replaces vim-flake8)
-  -- Requires: uv tool install flake8  (or ruff — swap below)
+  -- Requires: uv tool install ruff
   -- --------------------------------------------------------------------------
   {
     "mfussenegger/nvim-lint",
     config = function()
       require("lint").linters_by_ft = {
-        python = { "flake8" }, -- swap for "ruff" if preferred
+        python = { "ruff" },
       }
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         callback = function()
