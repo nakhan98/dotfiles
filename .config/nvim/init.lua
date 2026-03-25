@@ -151,6 +151,7 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
     build  = ":TSUpdate",
+    lazy   = false, -- load eagerly to avoid config running before plugin is ready
     config = function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = { "python", "lua", "bash", "yaml", "json", "markdown" },
@@ -163,11 +164,12 @@ require("lazy").setup({
   -- --------------------------------------------------------------------------
   -- LSP (replaces jedi-vim)
   -- Requires: uv tool install pyright
+  -- Uses built-in vim.lsp.config API (Neovim 0.11+)
   -- --------------------------------------------------------------------------
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require("lspconfig").pyright.setup({})
+      vim.lsp.enable('pyright')
     end,
   },
 
