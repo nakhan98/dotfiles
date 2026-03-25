@@ -153,10 +153,8 @@ require("lazy").setup({
     build  = ":TSUpdate",
     lazy   = false, -- load eagerly to avoid config running before plugin is ready
     config = function()
-      require("nvim-treesitter.configs").setup({
+      require("nvim-treesitter").setup({
         ensure_installed = { "python", "lua", "bash", "yaml", "json", "markdown" },
-        highlight        = { enable = true },
-        indent           = { enable = true },
       })
     end,
   },
