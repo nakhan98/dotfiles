@@ -58,6 +58,7 @@ map("n", "<C-H>", "<C-W><C-H>")
 
 -- FZF
 map("n", "<C-p>", function() require("fzf-lua").files() end, { silent = true })
+map("n", "<leader>fg", function() require("fzf-lua").live_grep() end, { silent = true })
 
 -- ============================================================================
 -- Autocommands
