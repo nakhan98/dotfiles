@@ -142,6 +142,9 @@ require("lazy").setup({
   -- --------------------------------------------------------------------------
   -- Treesitter — syntax highlighting + indentation
   -- (replaces hynek/vim-python-pep8-indent for Python)
+  -- Note: uses the pre-rewrite API (ensure_installed inside setup).
+  -- If nvim-treesitter upgrades to the new rewrite, this may need updating
+  -- to use `opts = { ensure_installed = { ... } }` style instead.
   -- --------------------------------------------------------------------------
   {
     "nvim-treesitter/nvim-treesitter",

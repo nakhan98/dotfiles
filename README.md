@@ -64,7 +64,8 @@ To set up, copy or symlink into place:
 mkdir -p ~/.pi/agent/extensions/plan-mode
 cp .pi/agent/AGENTS.md ~/.pi/agent/AGENTS.md
 cp .pi/agent/settings.json ~/.pi/agent/settings.json
-cp .pi/agent/extensions/modes.ts ~/.pi/agent/extensions/plan-mode/utils.ts
+cp .pi/agent/extensions/modes.ts ~/.pi/agent/extensions/modes.ts
+cp .pi/agent/extensions/plan-mode/utils.ts ~/.pi/agent/extensions/plan-mode/utils.ts
 cp .pi/agent/extensions/plan-mode/index.ts.disabled ~/.pi/agent/extensions/plan-mode/index.ts.disabled
 ```
 
