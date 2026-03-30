@@ -98,4 +98,17 @@ export default function (pi: ExtensionAPI) {
       }
     },
   });
+
+  // TESTING: /run shortcut command
+  pi.registerCommand("run", {
+    description: "Shortcut: switch to build mode, send 'Proceed', then return to previous mode",
+    handler: async (_args, ctx) => {
+      const previous = mode;
+      mode = "build";
+      applyMode(ctx);
+      ctx.ui.notify("Switched to build mode", "success");
+      returnToMode = previous !== mode ? previous : null;
+      pi.sendUserMessage("(Switched to build mode — bash, write, and edit tools are now available)\n\nProceed");
+    },
+  });
 }
