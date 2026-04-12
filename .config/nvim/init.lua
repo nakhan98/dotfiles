@@ -56,6 +56,17 @@ map("n", "<C-K>", "<C-W><C-K>")
 map("n", "<C-L>", "<C-W><C-L>")
 map("n", "<C-H>", "<C-W><C-H>")
 
+-- Dev layout: vertical split with two terminals on the right
+-- NOTE: testing this layout, may adjust keybinding or behaviour
+map("n", "<leader>T", function()
+  vim.cmd("vsplit")      -- open right vertical pane
+  vim.cmd("wincmd l")   -- move into right pane
+  vim.cmd("split")      -- split right pane horizontally
+  vim.cmd("terminal")   -- terminal in top-right
+  vim.cmd("wincmd j")   -- move down
+  vim.cmd("terminal")   -- terminal in bottom-right
+end, { desc = "Open dual-terminal layout" })
+
 -- FZF
 map("n", "<C-p>", function() require("fzf-lua").files() end, { silent = true })
 map("n", "<leader>fg", function() require("fzf-lua").live_grep() end, { silent = true })
