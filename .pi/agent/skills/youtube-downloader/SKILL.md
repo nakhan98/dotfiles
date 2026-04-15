@@ -1,6 +1,6 @@
 ---
 name: youtube-downloader
-description: Downloads YouTube videos with the best available English subtitles using yt-dlp and cookies for authentication. Handles native, auto-generated, and translated English subtitles. Saves to /home/nasef/tmp/Downloads/youtube/Video Clips. Use when asked to download a YouTube video.
+description: Downloads YouTube videos with the best available English subtitles using yt-dlp and cookies for authentication. Handles native, auto-generated, and translated English subtitles. Saves to ~/tmp/Downloads/youtube/Video Clips. Use when asked to download a YouTube video.
 ---
 
 # YouTube Video Downloader
@@ -9,7 +9,7 @@ Downloads a YouTube video with the best available English subtitles using yt-dlp
 
 ## Setup
 
-Ensure `yt-dlp` is installed and a cookies file exists at `/home/nasef/tmp/Downloads/youtube/cookies.txt`.
+Ensure `yt-dlp` is installed and a cookies file exists at `~/tmp/Downloads/youtube/cookies.txt`.
 
 ```bash
 which yt-dlp || pip install yt-dlp
@@ -25,7 +25,7 @@ Provide a YouTube URL. The skill will:
 
 ## Output Directory
 
-All downloads go to: `/home/nasef/tmp/Downloads/youtube/Video Clips`
+All downloads go to: `~/tmp/Downloads/youtube/Video Clips`
 
 ## Instructions
 
@@ -55,13 +55,13 @@ If multiple options exist or it's unclear, ask the user:
 ### Step 4 — Download Video + Subtitles
 
 ```bash
-yt-dlp --cookies /home/nasef/tmp/Downloads/youtube/cookies.txt \
+yt-dlp --cookies ~/tmp/Downloads/youtube/cookies.txt \
        -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]/b" \
        --write-auto-subs \
        --sub-lang [LANG_CODE] \
        --sub-format srt \
        --convert-subs srt \
-       --output "/home/nasef/tmp/Downloads/youtube/Video Clips/%(title)s.%(ext)s" \
+       --output "~/tmp/Downloads/youtube/Video Clips/%(title)s.%(ext)s" \
        "[YOUTUBE_URL]"
 ```
 
@@ -73,16 +73,16 @@ Also share the command with the user so they can run it manually in another shel
 
 ### Step 5 — Verify & Report
 
-- Confirm both video and subtitle files exist in `/home/nasef/tmp/Downloads/youtube/Video Clips`
+- Confirm both video and subtitle files exist in `~/tmp/Downloads/youtube/Video Clips`
 - Report final filenames to the user
 - Report any issues encountered
 
 ## Expected Output
 
 ```
-/home/nasef/tmp/Downloads/youtube/Video Clips/[Title].mp4
-/home/nasef/tmp/Downloads/youtube/Video Clips/[Title].en.srt        # native/auto English
-/home/nasef/tmp/Downloads/youtube/Video Clips/[Title].en-bn.srt     # translated from Bangla
+~/tmp/Downloads/youtube/Video Clips/[Title].mp4
+~/tmp/Downloads/youtube/Video Clips/[Title].en.srt        # native/auto English
+~/tmp/Downloads/youtube/Video Clips/[Title].en-bn.srt     # translated from Bangla
 ```
 
 ## Error Handling
@@ -96,6 +96,6 @@ Also share the command with the user so they can run it manually in another shel
 
 ## Notes
 
-- Uses cookies at `/home/nasef/tmp/Downloads/youtube/cookies.txt` for authentication
+- Uses cookies at `~/tmp/Downloads/youtube/cookies.txt` for authentication
 - Language code specificity matters: `en-bn` means translated-to-English from Bangla source
 - One video per invocation — invoke the skill separately for batch downloads
