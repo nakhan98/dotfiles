@@ -35,13 +35,19 @@ uv tool run ddgs news -q "YOUR QUERY" --max_results 5 --timelimit w
 
 ```bash
 uv tool run ddgs images -q "YOUR QUERY" --max_results 5
+uv tool run ddgs images -q "YOUR QUERY" --color Blue --max_results 5
 ```
+
+`--color`: `Red`, `Orange`, `Yellow`, `Green`, `Blue`, `Purple`, `Pink`, `Brown`, `Black`, `Gray`, `Teal`, `White`, `Monochrome`
 
 ## Videos Search
 
 ```bash
 uv tool run ddgs videos -q "YOUR QUERY" --max_results 5
+uv tool run ddgs videos -q "YOUR QUERY" --duration medium --max_results 5
 ```
+
+`--duration`: `short`, `medium`, `long`
 
 ## Books Search
 
@@ -60,19 +66,29 @@ uv tool run ddgs extract -u "https://example.com" -f text_plain
 
 ```bash
 uv tool run ddgs text -q "YOUR QUERY" --max_results 5 -o /tmp/results.json
+uv tool run ddgs text -q "YOUR QUERY" --max_results 5 -o /tmp/results.csv
 ```
 
 ---
+
+## Proxy Support
+
+Set the `DDGS_PROXY` environment variable to route through a proxy:
+
+```bash
+DDGS_PROXY="socks5h://127.0.0.1:9150" uv tool run ddgs text -q "YOUR QUERY"
+```
 
 ## Quick Reference
 
 | Parameter     | Values                                          | Default    |
 |---------------|-------------------------------------------------|------------|
 | `--max_results` | integer                                       | `10`       |
+| `--page`      | integer (for paginating results)                | `1`        |
 | `--region`    | `us-en`, `uk-en`, `de-de`, `ru-ru`, etc.       | `us-en`    |
 | `--safesearch`| `on`, `moderate`, `off`                         | `moderate` |
 | `--timelimit` | `d` (day), `w` (week), `m` (month), `y` (year) | none       |
-| `--backend`   | `auto`, `bing`, `duckduckgo`, `google`, `brave`, `yandex`, `yahoo` | `auto` |
+| `--backend`   | `auto`, `all`, `bing`, `duckduckgo`, `google`, `brave`, `yandex`, `yahoo` | `auto` |
 
 ## Available Backends by Method
 
@@ -88,5 +104,7 @@ uv tool run ddgs text -q "YOUR QUERY" --max_results 5 -o /tmp/results.json
 
 - **`uv: command not found`** — uv not installed; on host: `curl -LsSf https://astral.sh/uv/install.sh | sh`; in dev container: rebuild image
 - **Slow first run** — uv is downloading and caching ddgs, subsequent runs will be fast
-- **Rate limited** — try a different `--backend` or wait a moment before retrying
-- **No results** — broaden the query or try `--backend auto` (default)
+- **`RatelimitException`** — rate limited by search engine; try a different `--backend` or wait before retrying
+- **`TimeoutException`** — increase timeout via `DDGS_TIMEOUT=10` env var or try a different backend
+- **`DDGSException`** — general error; check query and backend availability
+- **No results** — broaden the query or try `--backend all` to query all engines simultaneously
