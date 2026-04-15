@@ -1,28 +1,58 @@
 # dotfiles
 
-## Install vim plugins (using vim-plug)
+## Vim setup
 
-* Create (neo)vim config directories and files:
-```
-cp -rv .vim* ~/
-mv ~/.vim/pack ~/.vim/pack_old
-mkdir -vp ~/.local/share/nvim ~/.config/nvim
-ln -vs ~/.vim ~/.local/share/nvim/site
-ln -vs ~/.vimrc ~/.config/nvim/init.vim
+Copy `.vimrc` into place:
+
+```bash
+cp .vimrc ~/
 ```
 
-* Then:
+Install [vim-plug](https://github.com/junegunn/vim-plug) if not already installed, then open Vim and run:
 
-> Reload the file or restart Vim, then you can,
+```
+:PlugInstall
+```
 
->    :PlugInstall to install the plugins
->    :PlugUpdate to install or update the plugins
->    :PlugDiff to review the changes from the last update
->    :PlugClean to remove plugins no longer in the list
+Useful vim-plug commands:
+- `:PlugInstall` — install plugins
+- `:PlugUpdate` — install or update plugins
+- `:PlugDiff` — review changes from last update
+- `:PlugClean` — remove plugins no longer in the list
 
-See: https://github.com/junegunn/vim-plug
+---
 
-Also see `.vimrc` for more info.
+## Neovim setup
+
+Symlink the config into place:
+
+```bash
+mkdir -p ~/.config/nvim
+ln -sf ~/dotfiles/.config/nvim/init.lua ~/.config/nvim/init.lua
+```
+
+[lazy.nvim](https://github.com/folke/lazy.nvim) will bootstrap itself automatically on first launch. Then open Neovim and run:
+
+```
+:Lazy sync
+```
+
+### External tool dependencies
+
+Install Python tools via [uv](https://github.com/astral-sh/uv):
+
+```bash
+uv tool install pyright   # LSP
+uv tool install ruff      # formatting + linting
+```
+
+Useful lazy.nvim commands:
+- `:Lazy sync` — install and update plugins
+- `:Lazy update` — update plugins
+- `:Lazy clean` — remove unused plugins
+- `:Lazy health` — check plugin health
+
+---
 
 ## Pi agent settings (`.pi/agent/`)
 
@@ -40,11 +70,3 @@ cp .pi/agent/extensions/plan-mode/index.ts.disabled ~/.pi/agent/extensions/plan-
 ```
 
 Not tracked: `auth.json`, `bin/`, `sessions/`.
-
-## Install vim plugins old way (using git submodules)
-* Comment out vim-plug lines in `.vimrc`
-* Run: git submodule update --init --recursive
-* To update plugins: git submodule update --recursive --remote
-* To add plugins:
-  * Add as git submodule: git submodule add <https://git/repo/<name-of-plugin.git> .vim/pack/plugins/start/<name-of-plugin>
-  * Commit changes: git add .gitmodules .vim/pack/plugins/start/<name-of-plugin> && ...
