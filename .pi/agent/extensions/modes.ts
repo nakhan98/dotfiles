@@ -17,7 +17,7 @@
 // - The LLM is prompted before each bash/write/edit call: Proceed / Accept all / Block
 // - "Accept all" silences that specific tool for the remainder of the session
 // - Gate resets on new session only (accepted tools persist across /plan <-> /build switches)
-// - Footer always shows per-tool status: "mode: build [bash:ask, write:ask, edit:ask]"
+// - Footer always shows per-tool status: "mode: build [bash: ask, write: ask, edit: ask]"
 //
 // TODO: env var PI_CONFIRM_WRITES=0 to disable gate entirely at startup (for CI/power users)
 // TODO: "Accept all tools" option in dialog to silence all tools mid-session in one go
@@ -43,7 +43,7 @@ export default function (pi: ExtensionAPI) {
       ctx.ui.setStatus("modes-ext", ctx.ui.theme.fg("muted", "mode: plan"));
     } else {
       pi.setActiveTools(BUILD_TOOLS);
-      const parts = WRITE_TOOLS.map(t => `${t}:${toolStatus(t)}`).join(", ");
+      const parts = WRITE_TOOLS.map(t => `${t}: ${toolStatus(t)}`).join(", ");
       ctx.ui.setStatus("modes-ext", ctx.ui.theme.fg("success", `mode: build [${parts}]`));
     }
   }
