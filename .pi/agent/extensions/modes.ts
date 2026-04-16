@@ -16,7 +16,7 @@
 // - Gate is always active in build mode (no toggle command)
 // - The LLM is prompted before each bash/write/edit call: Proceed / Accept all / Block
 // - "Accept all" silences that specific tool for the remainder of the session
-// - Gate resets on /plan -> /build or new session
+// - Gate resets on new session only (accepted tools persist across /plan <-> /build switches)
 // - Footer always shows per-tool status: "mode: build [bash:ask, write:ask, edit:ask]"
 //
 // TODO: env var PI_CONFIRM_WRITES=0 to disable gate entirely at startup (for CI/power users)
@@ -93,7 +93,6 @@ export default function (pi: ExtensionAPI) {
     handler: async (args, ctx) => {
       const previous = mode;
       mode = "plan";
-      acceptedTools = new Set(); // reset gate state when leaving build mode
       applyMode(ctx);
       ctx.ui.notify("Switched to plan mode", "info");
       if (args?.trim()) {
