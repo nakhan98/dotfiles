@@ -11,15 +11,31 @@
 // - /build [msg] — switches to build mode, gives LLM full tool access; if msg is provided, prepends a mode-change note and sends it to the LLM immediately, then switches back to the previous mode (only if mode actually changed)
 // - The current mode is shown in the footer as "mode: plan" (muted) or "mode: build" (green) under the "modes-ext" status key
 // - Mode resets to "plan" on each new session start
+//
+// Write confirmation gate:
+// - Gate is always active in build mode (no toggle command)
+// - The LLM is prompted before each bash/write/edit call: Proceed / Accept all / Block
+// - "Accept all" silences that specific tool for the remainder of the session
+// - Gate resets on /plan -> /build or new session
+// - Footer always shows per-tool status: "mode: build [bash:ask, write:ask, edit:ask]"
+//
+// TODO: env var PI_CONFIRM_WRITES=0 to disable gate entirely at startup (for CI/power users)
+// TODO: "Accept all tools" option in dialog to silence all tools mid-session in one go
 
 import type { ExtensionAPI, ExtensionContext } from "@mariozechner/pi-coding-agent";
 
 const PLAN_TOOLS = ["read", "grep", "find", "ls"];
 const BUILD_TOOLS = ["read", "grep", "find", "ls", "bash", "write", "edit"];
+const WRITE_TOOLS = ["bash", "write", "edit"];
 
 export default function (pi: ExtensionAPI) {
   let mode: "plan" | "build" = "plan";
   let returnToMode: "plan" | "build" | null = null;
+  let acceptedTools = new Set<string>();
+
+  function toolStatus(tool: string): string {
+    return acceptedTools.has(tool) ? "ok" : "ask";
+  }
 
   function applyMode(ctx: ExtensionContext) {
     if (mode === "plan") {
@@ -27,7 +43,8 @@ export default function (pi: ExtensionAPI) {
       ctx.ui.setStatus("modes-ext", ctx.ui.theme.fg("muted", "mode: plan"));
     } else {
       pi.setActiveTools(BUILD_TOOLS);
-      ctx.ui.setStatus("modes-ext", ctx.ui.theme.fg("success", "mode: build"));
+      const parts = WRITE_TOOLS.map(t => `${t}:${toolStatus(t)}`).join(", ");
+      ctx.ui.setStatus("modes-ext", ctx.ui.theme.fg("success", `mode: build [${parts}]`));
     }
   }
 
@@ -35,6 +52,7 @@ export default function (pi: ExtensionAPI) {
   pi.on("session_start", async (_event, ctx) => {
     mode = "plan";
     returnToMode = null;
+    acceptedTools = new Set();
     applyMode(ctx);
   });
 
@@ -43,6 +61,7 @@ export default function (pi: ExtensionAPI) {
     if (event.reason === "new") {
       mode = "plan";
       returnToMode = null;
+      acceptedTools = new Set();
       applyMode(ctx);
     }
   });
@@ -74,6 +93,7 @@ export default function (pi: ExtensionAPI) {
     handler: async (args, ctx) => {
       const previous = mode;
       mode = "plan";
+      acceptedTools = new Set(); // reset gate state when leaving build mode
       applyMode(ctx);
       ctx.ui.notify("Switched to plan mode", "info");
       if (args?.trim()) {
@@ -97,6 +117,35 @@ export default function (pi: ExtensionAPI) {
         pi.sendUserMessage(`(Switched to build mode — bash, write, and edit tools are now available)\n\n${args.trim()}`);
       }
     },
+  });
+
+  // Write confirmation gate
+  pi.on("tool_call", async (event, ctx) => {
+    if (mode !== "build") return;
+    if (!WRITE_TOOLS.includes(event.toolName)) return;
+    if (acceptedTools.has(event.toolName)) return;
+
+    if (!ctx.hasUI) {
+      return { block: true, reason: "Write confirmation gate is active but no UI is available" };
+    }
+
+    const choice = await ctx.ui.select(
+      `Allow ${event.toolName}? ("Accept all" = skip future ${event.toolName} confirmations)`,
+      ["Proceed", "Accept all", "Block"]
+    );
+
+    if (choice === "Accept all") {
+      acceptedTools.add(event.toolName);
+      applyMode(ctx); // update footer to reflect new accepted state
+      ctx.ui.notify(`Won't ask again for ${event.toolName} this session`, "info");
+      return;
+    }
+
+    if (choice === "Block" || choice === null) {
+      return { block: true, reason: "Blocked by user" };
+    }
+
+    // "Proceed" — allow through
   });
 
   // TESTING: /run shortcut command
