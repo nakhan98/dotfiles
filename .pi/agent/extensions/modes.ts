@@ -15,6 +15,7 @@
 // Write confirmation gate:
 // - Gate is always active in build mode (no toggle command)
 // - The LLM is prompted before each bash/write/edit call: Proceed / Accept all / Block
+// - Exception: write/edit to .tmp/todo.md is auto-allowed for implementation-plan tracking
 // - "Accept all" silences that specific tool for the remainder of the session
 // - Gate resets on new session only (accepted tools persist across /plan <-> /build switches)
 // - Footer always shows per-tool status: "mode: build [bash: ask, write: ask, edit: ask]"
@@ -27,6 +28,7 @@ import type { ExtensionAPI, ExtensionContext } from "@mariozechner/pi-coding-age
 const PLAN_TOOLS = ["read", "grep", "find", "ls"];
 const BUILD_TOOLS = ["read", "grep", "find", "ls", "bash", "write", "edit"];
 const WRITE_TOOLS = ["bash", "write", "edit"];
+const TODO_PATHS = new Set([".tmp/todo.md", "./.tmp/todo.md"]);
 
 export default function (pi: ExtensionAPI) {
   let mode: "plan" | "build" = "plan";
@@ -35,6 +37,11 @@ export default function (pi: ExtensionAPI) {
 
   function toolStatus(tool: string): string {
     return acceptedTools.has(tool) ? "ok" : "ask";
+  }
+
+  function isTodoPath(path: string | undefined): boolean {
+    if (!path) return false;
+    return TODO_PATHS.has(path) || path.endsWith("/.tmp/todo.md");
   }
 
   function applyMode(ctx: ExtensionContext) {
@@ -122,6 +129,9 @@ export default function (pi: ExtensionAPI) {
   pi.on("tool_call", async (event, ctx) => {
     if (mode !== "build") return;
     if (!WRITE_TOOLS.includes(event.toolName)) return;
+    if ((event.toolName === "write" || event.toolName === "edit") && isTodoPath(event.input.path as string | undefined)) {
+      return;
+    }
     if (acceptedTools.has(event.toolName)) return;
 
     if (!ctx.hasUI) {
