@@ -64,6 +64,7 @@ To set up, copy or symlink into place:
 mkdir -p ~/.pi/agent/extensions
 cp .pi/agent/AGENTS.md ~/.pi/agent/AGENTS.md
 cp .pi/agent/settings.json ~/.pi/agent/settings.json
+cp .pi/agent/keybindings.json ~/.pi/agent/keybindings.json
 cp .pi/agent/extensions/modes.ts ~/.pi/agent/extensions/modes.ts
 ```
 
