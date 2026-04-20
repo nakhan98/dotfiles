@@ -20,6 +20,8 @@
 // - Defaults:
 //   - `searchType = "text"`
 //   - `maxResults = 5`
+//   - `region = "uk-en"`
+// - Searches use ddgs backend auto-selection by default (no explicit backend is set)
 // - Optional search parameters:
 //   - `timelimit`: `d` | `w` | `m` | `y`
 // - `timelimit` is only passed through for search types where ddgs supports it;
@@ -234,6 +236,8 @@ function buildSearchArgs(
     params.query,
     "--max_results",
     String(params.maxResults),
+    "--region",
+    "uk-en",
   ];
 
   if (params.timelimit && params.searchType === "news") {
