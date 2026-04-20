@@ -66,6 +66,14 @@
 // Suggested modes.ts integration:
 // - Add `web_search` to PLAN_TOOLS
 // - Add `web_search` to BUILD_TOOLS
+//
+// TODO (security / hardening):
+// - Validate extract URLs and block localhost, private RFC1918 ranges, link-local addresses,
+//   and metadata endpoints before invoking ddgs
+// - Add explicit execution timeouts to `pi.exec()` calls
+// - Consider truncating large extract payloads in `details.content`
+// - Consider pinning the ddgs version used by `uv tool run` to reduce runtime drift
+// - Tighten `maxResults` validation to integers only
 
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 import { StringEnum } from "@mariozechner/pi-ai";
