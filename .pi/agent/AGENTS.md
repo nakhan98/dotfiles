@@ -31,7 +31,9 @@ The legacy `ddgs` skill is still present for manual use, but automatic model inv
 
 ## General Guidelines
 
-- `./.tmp/` is globally git-ignored (see `~/.config/git/ignore`) and serves as a development scratch space.
-- If asked to create an implementation plan or todo, create it as `./.tmp/todo.md` — a todo markdown file that can be tracked and updated as needed.
+- `./.tmp/` is globally git-ignored (see `~/.config/git/ignore`) and serves as a development scratch space when working inside git repositories.
+- If asked to create an implementation plan or todo:
+  - in a git repository, create it as `./.tmp/todo.md` — a todo markdown file that can be tracked and updated as needed
+  - outside a git repository, keep the todo in conversational memory unless the user explicitly asks for a file
 - Long-running commands should be run in a background tmux session (e.g. `tmux new-session -d -s <name> '<cmd>'`). Progress can be monitored by polling with `tmux capture-pane -pt <name>` periodically.
 - For creating git branches and commit messages use the Conventional Commits standard.
