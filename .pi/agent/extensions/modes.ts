@@ -12,13 +12,16 @@
 // - The current mode is shown in the footer as "mode: plan" (muted) or "mode: build" (green) under the "modes-ext" status key
 // - Mode resets to "plan" on each new session start
 //
-// Write confirmation gate:
-// - Gate is always active in build mode (no toggle command)
-// - The LLM is prompted before each bash/write/edit call: Proceed / Accept all / Block
+// Tool confirmation gate:
+// - `bash`, `write`, and `edit` are gated in build mode only
+// - `web_search` is gated in both plan and build mode
+// - The LLM is prompted before each gated tool call: Proceed / Accept all / Block
 // - Exception: write/edit to .tmp/todo.md is auto-allowed for implementation-plan tracking
 // - "Accept all" silences that specific tool for the remainder of the session
 // - Gate resets on new session only (accepted tools persist across /plan <-> /build switches)
-// - Footer always shows per-tool status: "mode: build [bash: ask, write: ask, edit: ask]"
+// - Footer always shows relevant per-tool status, for example:
+//   - "mode: plan [web_search: ask]"
+//   - "mode: build [bash: ask, write: ask, edit: ask, web_search: ask]"
 //
 // TODO: env var PI_CONFIRM_WRITES=0 to disable gate entirely at startup (for CI/power users)
 // TODO: "Accept all tools" option in dialog to silence all tools mid-session in one go
@@ -27,7 +30,8 @@ import type { ExtensionAPI, ExtensionContext } from "@mariozechner/pi-coding-age
 
 const PLAN_TOOLS = ["read", "grep", "find", "ls", "web_search"];
 const BUILD_TOOLS = ["read", "grep", "find", "ls", "bash", "write", "edit", "web_search"];
-const WRITE_TOOLS = ["bash", "write", "edit"];
+const BUILD_GATED_TOOLS = ["bash", "write", "edit"];
+const ALWAYS_GATED_TOOLS = ["web_search"];
 const TODO_PATHS = new Set([".tmp/todo.md", "./.tmp/todo.md"]);
 
 export default function (pi: ExtensionAPI) {
@@ -44,13 +48,24 @@ export default function (pi: ExtensionAPI) {
     return TODO_PATHS.has(path) || path.endsWith("/.tmp/todo.md");
   }
 
+  function formatStatuses(tools: string[]): string {
+    return tools.map(t => `${t}: ${toolStatus(t)}`).join(", ");
+  }
+
+  function shouldGateTool(toolName: string): boolean {
+    if (ALWAYS_GATED_TOOLS.includes(toolName)) return true;
+    if (mode === "build" && BUILD_GATED_TOOLS.includes(toolName)) return true;
+    return false;
+  }
+
   function applyMode(ctx: ExtensionContext) {
     if (mode === "plan") {
       pi.setActiveTools(PLAN_TOOLS);
-      ctx.ui.setStatus("modes-ext", ctx.ui.theme.fg("muted", "mode: plan"));
+      const parts = formatStatuses(ALWAYS_GATED_TOOLS);
+      ctx.ui.setStatus("modes-ext", ctx.ui.theme.fg("muted", `mode: plan [${parts}]`));
     } else {
       pi.setActiveTools(BUILD_TOOLS);
-      const parts = WRITE_TOOLS.map(t => `${t}: ${toolStatus(t)}`).join(", ");
+      const parts = formatStatuses([...BUILD_GATED_TOOLS, ...ALWAYS_GATED_TOOLS]);
       ctx.ui.setStatus("modes-ext", ctx.ui.theme.fg("success", `mode: build [${parts}]`));
     }
   }
@@ -125,17 +140,16 @@ export default function (pi: ExtensionAPI) {
     },
   });
 
-  // Write confirmation gate
+  // Tool confirmation gate
   pi.on("tool_call", async (event, ctx) => {
-    if (mode !== "build") return;
-    if (!WRITE_TOOLS.includes(event.toolName)) return;
+    if (!shouldGateTool(event.toolName)) return;
     if ((event.toolName === "write" || event.toolName === "edit") && isTodoPath(event.input.path as string | undefined)) {
       return;
     }
     if (acceptedTools.has(event.toolName)) return;
 
     if (!ctx.hasUI) {
-      return { block: true, reason: "Write confirmation gate is active but no UI is available" };
+      return { block: true, reason: "Tool confirmation gate is active but no UI is available" };
     }
 
     const choice = await ctx.ui.select(
