@@ -16,10 +16,15 @@ This setup uses a **modes extension** that controls tool access per session:
   - `Proceed` — allow once
   - `Accept all` — silence that tool for the rest of the session
   - `Block` — cancel the call
-- **Exception:** updates to `.tmp/todo.md` are auto-allowed for plan tracking
+- **Exception:** in **build mode only**, writes/updates to `./.tmp/todo.md` are auto-allowed for plan tracking
 - Do not retry a blocked call unless the user asks you to
 
-For multi-step tasks: explore and plan first in plan mode, then when the user switches to `/build` (or `/run`), create a `.tmp/todo.md` with the implementation plan before proceeding. Update it as steps are completed.
+For multi-step tasks:
+- Always explore and plan first in **plan mode**
+- In **plan mode**, remain strictly read-only and keep any plan/todo in conversational context
+- After the user switches to **/build** (or **/run**), create `./.tmp/todo.md` **only if working inside a git repository**
+- If not in a git repository, keep the todo in conversational context unless the user explicitly asks for a file
+- Update `./.tmp/todo.md` as implementation steps are completed
 
 ## Web Search
 
@@ -32,8 +37,5 @@ The legacy `ddgs` skill is still present for manual use, but automatic model inv
 ## General Guidelines
 
 - `./.tmp/` is globally git-ignored (see `~/.config/git/ignore`) and serves as a development scratch space when working inside git repositories.
-- If asked to create an implementation plan or todo:
-  - in a git repository, create it as `./.tmp/todo.md` — a todo markdown file that can be tracked and updated as needed
-  - outside a git repository, keep the todo in conversational memory unless the user explicitly asks for a file
 - Long-running commands should be run in a background tmux session (e.g. `tmux new-session -d -s <name> '<cmd>'`). Progress can be monitored by polling with `tmux capture-pane -pt <name>` periodically.
 - For creating git branches and commit messages use the Conventional Commits standard.
