@@ -4,7 +4,7 @@
 //
 // Spec:
 // - On every session start (including /new), pi begins in "plan" mode (read-only for the LLM)
-// - In plan mode, the LLM can only use: read, grep, find, ls
+// - In plan mode, the LLM can only use: read, grep, find, ls, web_search
 // - In plan mode, the LLM is informed of its restrictions via a hidden before_agent_start message
 // - In plan mode, the user can still run !cmd (user bash) freely
 // - /plan [msg]  — switches to plan mode, restricts LLM to read-only tools; if msg is provided, prepends a mode-change note and sends it to the LLM immediately, then switches back to the previous mode (only if mode actually changed)
@@ -25,8 +25,8 @@
 
 import type { ExtensionAPI, ExtensionContext } from "@mariozechner/pi-coding-agent";
 
-const PLAN_TOOLS = ["read", "grep", "find", "ls"];
-const BUILD_TOOLS = ["read", "grep", "find", "ls", "bash", "write", "edit"];
+const PLAN_TOOLS = ["read", "grep", "find", "ls", "web_search"];
+const BUILD_TOOLS = ["read", "grep", "find", "ls", "bash", "write", "edit", "web_search"];
 const WRITE_TOOLS = ["bash", "write", "edit"];
 const TODO_PATHS = new Set([".tmp/todo.md", "./.tmp/todo.md"]);
 
@@ -88,7 +88,7 @@ export default function (pi: ExtensionAPI) {
       return {
         message: {
           customType: "modes-ext-context",
-          content: "[PLAN MODE] You are in read-only mode. Only read, grep, find, and ls are available. Do not attempt file modifications or bash commands.",
+          content: "[PLAN MODE] You are in read-only mode. Only read, grep, find, ls, and web_search are available. Do not attempt file modifications or bash commands.",
           display: false,
         },
       };
@@ -96,7 +96,7 @@ export default function (pi: ExtensionAPI) {
   });
 
   pi.registerCommand("plan", {
-    description: "Switch to plan mode (LLM read-only: read, grep, find, ls)",
+    description: "Switch to plan mode (LLM read-only: read, grep, find, ls, web_search)",
     handler: async (args, ctx) => {
       const previous = mode;
       mode = "plan";
@@ -105,7 +105,7 @@ export default function (pi: ExtensionAPI) {
       if (args?.trim()) {
         // Fix 4: only return to previous mode if it was actually different
         returnToMode = previous !== mode ? previous : null;
-        pi.sendUserMessage(`(Switched to plan mode — only read, grep, find, ls available)\n\n${args.trim()}`);
+        pi.sendUserMessage(`(Switched to plan mode — only read, grep, find, ls, and web_search available)\n\n${args.trim()}`);
       }
     },
   });

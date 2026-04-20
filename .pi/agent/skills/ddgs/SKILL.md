@@ -1,6 +1,7 @@
 ---
 name: ddgs
 description: Use when you need to search the web, find news, images, videos, or books, or extract content from a URL. Uses uv to run ddgs ephemerally with no persistent install.
+disable-model-invocation: true
 ---
 
 # ddgs — Web Search via uv
