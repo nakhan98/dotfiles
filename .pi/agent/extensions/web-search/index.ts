@@ -31,11 +31,11 @@
 // - Uses `uv tool run ddgs extract -u <url>` internally
 // - Requires `url` when `action === "extract"`
 // - Defaults:
-//   - `extractFormat = "markdown"`
+//   - `extractFormat = "text_markdown"`
 // - Supported extract formats:
-//   - `markdown`
+//   - `text_markdown`
 //   - `text_plain`
-// - `markdown` maps to ddgs default output behavior (no explicit `-f` flag)
+// - `text_markdown` maps to `-f text_markdown`
 // - `text_plain` maps to `-f text_plain`
 //
 // Output behavior:
@@ -101,7 +101,7 @@ const WebSearchParamsSchema = Type.Object({
   timelimit: Type.Optional(StringEnum(["d", "w", "m", "y"] as const)),
 
   extractFormat: Type.Optional(
-    StringEnum(["markdown", "text_plain"] as const),
+    StringEnum(["text_markdown", "text_plain"] as const),
   ),
 });
 
@@ -249,14 +249,12 @@ function buildSearchArgs(
 
 function buildExtractArgs(
   params: Required<Pick<WebSearchParams, "url">> & {
-    extractFormat: "markdown" | "text_plain";
+    extractFormat: "text_markdown" | "text_plain";
   },
 ): string[] {
   const args = ["tool", "run", "ddgs", "extract", "-u", params.url];
 
-  if (params.extractFormat === "text_plain") {
-    args.push("-f", "text_plain");
-  }
+  args.push("-f", params.extractFormat);
 
   return args;
 }
@@ -374,7 +372,7 @@ export default function (pi: ExtensionAPI) {
       }
 
       const url = normalizeUrl(params.url);
-      const extractFormat = params.extractFormat ?? "markdown";
+      const extractFormat = params.extractFormat ?? "text_markdown";
 
       if (!url) {
         return {
