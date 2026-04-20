@@ -4,19 +4,30 @@
 
 This setup uses a **modes extension** that controls tool access per session:
 
-- Sessions always start in **plan mode** — read-only (only `read`, `grep`, `find`, `ls`)
-- Use `/build` to switch to build mode — full access (`bash`, `write`, `edit`, etc.)
-- Use `/plan` to switch back to read-only
-- The current mode is shown in the footer as `mode: plan` or `mode: build [bash: ask, write: ask, edit: ask]`
-- In build mode, **each `bash`, `write`, and `edit` call requires user confirmation** — a dialog will appear before execution. The user may choose "Proceed" (once), "Accept all" (silence that tool for the session), or "Block" (cancel the call). **Exception:** updates to `.tmp/todo.md` are auto-allowed for plan tracking. Do not retry a blocked call unless the user asks you to.
+- Sessions always start in **plan mode** — read-only local tools plus `web_search` (`read`, `grep`, `find`, `ls`, `web_search`)
+- Use `/build` to switch to build mode — full access (`read`, `grep`, `find`, `ls`, `web_search`, `bash`, `write`, `edit`)
+- Use `/plan` to switch back to plan mode
+- The current mode is shown in the footer as:
+  - `mode: plan [web_search: ask|ok]`
+  - `mode: build [bash: ask|ok, write: ask|ok, edit: ask|ok, web_search: ask|ok]`
+- `web_search` requires user confirmation in **both** plan and build mode unless previously accepted for the session
+- In build mode, each `bash`, `write`, and `edit` call also requires user confirmation
+- The confirmation dialog offers:
+  - `Proceed` — allow once
+  - `Accept all` — silence that tool for the rest of the session
+  - `Block` — cancel the call
+- **Exception:** updates to `.tmp/todo.md` are auto-allowed for plan tracking
+- Do not retry a blocked call unless the user asks you to
 
 For multi-step tasks: explore and plan first in plan mode, then when the user switches to `/build` (or `/run`), create a `.tmp/todo.md` with the implementation plan before proceeding. Update it as steps are completed.
 
 ## Web Search
 
-Web search is available via the `ddgs` skill. It uses `uv tool run ddgs` ephemerally on both
-the host and inside dev containers — no API keys, no container management, no persistent install.
-uv caches ddgs after the first run so subsequent searches are near-instant.
+Web search is available via the `web_search` extension tool, backed by `ddgs` through `uv tool run`.
+This provides first-class search and URL extraction without requiring general `bash` access.
+`uv` caches ddgs after the first run so subsequent searches are near-instant.
+
+The legacy `ddgs` skill is still present for manual use, but automatic model invocation is disabled.
 
 ## General Guidelines
 
