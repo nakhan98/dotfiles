@@ -16,15 +16,13 @@ This setup uses a **modes extension** that controls tool access per session:
   - `Proceed` — allow once
   - `Accept all` — silence that tool for the rest of the session
   - `Block` — cancel the call
-- **Exception:** in **build mode only**, writes/updates to `./.tmp/todo.md` are auto-allowed for plan tracking
 - Do not retry a blocked call unless the user asks you to
 
 For multi-step tasks:
 - Always explore and plan first in **plan mode**
-- In **plan mode**, remain strictly read-only and keep any plan/todo in conversational context
-- After the user switches to **/build** (or **/run**), create `./.tmp/todo.md` **only if working inside a git repository**
-- If not in a git repository, keep the todo in conversational context unless the user explicitly asks for a file
-- Update `./.tmp/todo.md` as implementation steps are completed
+- In **plan mode**, remain strictly read-only and keep any plan/todo in conversational context/history
+- For multi-step tasks, track progress using an internal todo in conversational context/history
+- Do **not** create a todo file unless the user explicitly asks for one
 
 ## Web Search
 

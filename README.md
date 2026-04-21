@@ -61,11 +61,12 @@ Config for the [pi coding agent](https://github.com/mariozechner/pi-coding-agent
 To set up, copy or symlink into place:
 
 ```bash
-mkdir -p ~/.pi/agent/extensions
+mkdir -p ~/.pi/agent/extensions ~/.pi/agent/extensions/web-search
 cp .pi/agent/AGENTS.md ~/.pi/agent/AGENTS.md
 cp .pi/agent/settings.json ~/.pi/agent/settings.json
 cp .pi/agent/keybindings.json ~/.pi/agent/keybindings.json
 cp .pi/agent/extensions/modes.ts ~/.pi/agent/extensions/modes.ts
+cp .pi/agent/extensions/web-search/index.ts ~/.pi/agent/extensions/web-search/index.ts
 ```
 
 Not tracked: `auth.json`, `bin/`, `sessions/`.

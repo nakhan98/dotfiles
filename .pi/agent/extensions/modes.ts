@@ -16,7 +16,6 @@
 // - `bash`, `write`, and `edit` are gated in build mode only
 // - `web_search` is gated in both plan and build mode
 // - The LLM is prompted before each gated tool call: Proceed / Accept all / Block
-// - Exception: write/edit to .tmp/todo.md is auto-allowed for implementation-plan tracking
 // - "Accept all" silences that specific tool for the remainder of the session
 // - Gate resets on new session only (accepted tools persist across /plan <-> /build switches)
 // - Footer always shows relevant per-tool status, for example:
@@ -32,7 +31,6 @@ const PLAN_TOOLS = ["read", "grep", "find", "ls", "web_search"];
 const BUILD_TOOLS = ["read", "grep", "find", "ls", "bash", "write", "edit", "web_search"];
 const BUILD_GATED_TOOLS = ["bash", "write", "edit"];
 const ALWAYS_GATED_TOOLS = ["web_search"];
-const TODO_PATHS = new Set([".tmp/todo.md", "./.tmp/todo.md"]);
 
 export default function (pi: ExtensionAPI) {
   let mode: "plan" | "build" = "plan";
@@ -41,11 +39,6 @@ export default function (pi: ExtensionAPI) {
 
   function toolStatus(tool: string): string {
     return acceptedTools.has(tool) ? "ok" : "ask";
-  }
-
-  function isTodoPath(path: string | undefined): boolean {
-    if (!path) return false;
-    return TODO_PATHS.has(path) || path.endsWith("/.tmp/todo.md");
   }
 
   function formatStatuses(tools: string[]): string {
@@ -143,9 +136,6 @@ export default function (pi: ExtensionAPI) {
   // Tool confirmation gate
   pi.on("tool_call", async (event, ctx) => {
     if (!shouldGateTool(event.toolName)) return;
-    if ((event.toolName === "write" || event.toolName === "edit") && isTodoPath(event.input.path as string | undefined)) {
-      return;
-    }
     if (acceptedTools.has(event.toolName)) return;
 
     if (!ctx.hasUI) {
