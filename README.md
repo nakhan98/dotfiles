@@ -76,12 +76,13 @@ This keeps config in sync while leaving machine-local state in `~/.pi/agent/`.
 
 ```bash
 mkdir -p ~/.pi/agent
-ln -sfn ~/dotfiles/.pi/agent/AGENTS.md ~/.pi/agent/AGENTS.md
-ln -sfn ~/dotfiles/.pi/agent/settings.json ~/.pi/agent/settings.json
-ln -sfn ~/dotfiles/.pi/agent/keybindings.json ~/.pi/agent/keybindings.json
-ln -sfn ~/dotfiles/.pi/agent/models.json ~/.pi/agent/models.json
-ln -sfn ~/dotfiles/.pi/agent/extensions ~/.pi/agent/extensions
-ln -sfn ~/dotfiles/.pi/agent/skills ~/.pi/agent/skills
+cd ~/dev/github/dotfiles  # or navigate to your dotfiles repo
+ln -sfn $(pwd)/.pi/agent/AGENTS.md ~/.pi/agent/AGENTS.md
+ln -sfn $(pwd)/.pi/agent/settings.json ~/.pi/agent/settings.json
+ln -sfn $(pwd)/.pi/agent/keybindings.json ~/.pi/agent/keybindings.json
+ln -sfn $(pwd)/.pi/agent/models.json ~/.pi/agent/models.json
+ln -sfn $(pwd)/.pi/agent/extensions ~/.pi/agent/extensions
+ln -sfn $(pwd)/.pi/agent/skills ~/.pi/agent/skills
 ```
 
 Keep these local and untracked in `~/.pi/agent/`: `auth.json`, `bin/`, `sessions/`.
