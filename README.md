@@ -58,15 +58,30 @@ Useful lazy.nvim commands:
 
 Config for the [pi coding agent](https://github.com/mariozechner/pi-coding-agent) lives in `.pi/agent/`.
 
-To set up, copy or symlink into place:
+### Option 1: Copy files into place
 
 ```bash
-mkdir -p ~/.pi/agent/extensions ~/.pi/agent/extensions/web-search
+mkdir -p ~/.pi/agent
 cp .pi/agent/AGENTS.md ~/.pi/agent/AGENTS.md
 cp .pi/agent/settings.json ~/.pi/agent/settings.json
 cp .pi/agent/keybindings.json ~/.pi/agent/keybindings.json
-cp .pi/agent/extensions/modes.ts ~/.pi/agent/extensions/modes.ts
-cp .pi/agent/extensions/web-search/index.ts ~/.pi/agent/extensions/web-search/index.ts
+cp .pi/agent/models.json ~/.pi/agent/models.json
+cp -R .pi/agent/extensions ~/.pi/agent/extensions
+cp -R .pi/agent/skills ~/.pi/agent/skills
 ```
 
-Not tracked: `auth.json`, `bin/`, `sessions/`.
+### Option 2: Symlink tracked config into the live pi directory
+
+This keeps config in sync while leaving machine-local state in `~/.pi/agent/`.
+
+```bash
+mkdir -p ~/.pi/agent
+ln -sfn ~/dotfiles/.pi/agent/AGENTS.md ~/.pi/agent/AGENTS.md
+ln -sfn ~/dotfiles/.pi/agent/settings.json ~/.pi/agent/settings.json
+ln -sfn ~/dotfiles/.pi/agent/keybindings.json ~/.pi/agent/keybindings.json
+ln -sfn ~/dotfiles/.pi/agent/models.json ~/.pi/agent/models.json
+ln -sfn ~/dotfiles/.pi/agent/extensions ~/.pi/agent/extensions
+ln -sfn ~/dotfiles/.pi/agent/skills ~/.pi/agent/skills
+```
+
+Keep these local and untracked in `~/.pi/agent/`: `auth.json`, `bin/`, `sessions/`.
