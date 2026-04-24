@@ -62,10 +62,12 @@
 //   be used in plan mode without exposing general `bash`
 // - This tool intentionally presents a stable model-facing API (`web_search`)
 //   while allowing the backend implementation to change later if needed
+// - Integrated into modes.ts: present in both PLAN_TOOLS and BUILD_TOOLS
 //
-// Suggested modes.ts integration:
-// - Add `web_search` to PLAN_TOOLS
-// - Add `web_search` to BUILD_TOOLS
+// Rendering:
+// - renderCall shows `web_search <query> [searchType]` for search actions
+// - renderCall shows `web_search extract <url>` for extract actions
+// - The modes.ts confirmation gate surfaces the query or URL in the dialog before approval
 //
 // TODO (security / hardening):
 // - Validate extract URLs and block localhost, private RFC1918 ranges, link-local addresses,
@@ -76,6 +78,7 @@
 // - Tighten `maxResults` validation to integers only
 
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import { Text } from "@mariozechner/pi-tui";
 import { StringEnum } from "@mariozechner/pi-ai";
 import { Type, type Static } from "@sinclair/typebox";
 
@@ -278,6 +281,22 @@ export default function (pi: ExtensionAPI) {
       "Use action='extract' when the user provides a URL and wants the page content inspected or summarized.",
     ],
     parameters: WebSearchParamsSchema,
+
+    renderCall(args, theme, _context) {
+      let text = theme.fg("toolTitle", theme.bold("web_search "));
+      if (args.action === "search" && args.query) {
+        text += theme.fg("accent", args.query);
+        if (args.searchType && args.searchType !== "text") {
+          text += theme.fg("dim", ` [${args.searchType}]`);
+        }
+      } else if (args.action === "extract" && args.url) {
+        text += theme.fg("dim", "extract ");
+        text += theme.fg("accent", args.url);
+      } else {
+        text += theme.fg("dim", args.action ?? "");
+      }
+      return new Text(text, 0, 0);
+    },
 
     async execute(_toolCallId, params, signal, onUpdate, _ctx) {
       if (signal?.aborted) {

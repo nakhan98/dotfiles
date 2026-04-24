@@ -15,6 +15,7 @@
 // Tool confirmation gate:
 // - `bash`, `write`, and `edit` are gated in build mode only
 // - `web_search` is gated in both plan and build mode
+// - The confirmation prompt includes a detail line showing the query, URL, command, or path depending on the tool
 // - The LLM is prompted before each gated tool call: Proceed / Accept all / Block
 // - "Accept all" silences that specific tool for the remainder of the session
 // - Gate resets on new session only (accepted tools persist across /plan <-> /build switches)
@@ -142,8 +143,27 @@ export default function (pi: ExtensionAPI) {
       return { block: true, reason: "Tool confirmation gate is active but no UI is available" };
     }
 
+    let detail = "";
+    if (event.toolName === "web_search") {
+      const ws = event.input as { action?: string; query?: string; url?: string };
+      if (ws.action === "search" && ws.query) {
+        detail = `\nSearching: "${ws.query}"`;
+      } else if (ws.action === "extract" && ws.url) {
+        detail = `\nExtracting: ${ws.url}`;
+      }
+    } else if (event.toolName === "bash") {
+      const b = event.input as { command?: string };
+      if (b.command) {
+        const cmd = b.command.length > 80 ? `${b.command.slice(0, 77)}...` : b.command;
+        detail = `\n$ ${cmd}`;
+      }
+    } else if (event.toolName === "write" || event.toolName === "edit") {
+      const f = event.input as { path?: string };
+      if (f.path) detail = `\n${f.path}`;
+    }
+
     const choice = await ctx.ui.select(
-      `Allow ${event.toolName}? ("Accept all" = skip future ${event.toolName} confirmations)`,
+      `Allow ${event.toolName}?${detail}\n("Accept all" = skip future ${event.toolName} confirmations)`,
       ["Proceed", "Accept all", "Block"]
     );
 
