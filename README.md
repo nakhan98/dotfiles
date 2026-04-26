@@ -63,7 +63,6 @@ Config for the [pi coding agent](https://github.com/mariozechner/pi-coding-agent
 ```bash
 mkdir -p ~/.pi/agent
 cp .pi/agent/AGENTS.md ~/.pi/agent/AGENTS.md
-cp .pi/agent/settings.json ~/.pi/agent/settings.json
 cp .pi/agent/keybindings.json ~/.pi/agent/keybindings.json
 cp .pi/agent/models.json ~/.pi/agent/models.json
 cp -R .pi/agent/extensions ~/.pi/agent/extensions
@@ -78,11 +77,10 @@ This keeps config in sync while leaving machine-local state in `~/.pi/agent/`.
 mkdir -p ~/.pi/agent
 cd ~/dev/github/dotfiles  # or navigate to your dotfiles repo
 ln -sfn $(pwd)/.pi/agent/AGENTS.md ~/.pi/agent/AGENTS.md
-ln -sfn $(pwd)/.pi/agent/settings.json ~/.pi/agent/settings.json
 ln -sfn $(pwd)/.pi/agent/keybindings.json ~/.pi/agent/keybindings.json
 ln -sfn $(pwd)/.pi/agent/models.json ~/.pi/agent/models.json
 ln -sfn $(pwd)/.pi/agent/extensions ~/.pi/agent/extensions
 ln -sfn $(pwd)/.pi/agent/skills ~/.pi/agent/skills
 ```
 
-Keep these local and untracked in `~/.pi/agent/`: `auth.json`, `bin/`, `sessions/`.
+Keep these local and untracked in `~/.pi/agent/`: `auth.json`, `bin/`, `sessions/`, `settings.json`.
