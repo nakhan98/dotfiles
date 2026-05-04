@@ -47,7 +47,10 @@ export default function (pi: ExtensionAPI) {
   }
 
   function shouldGateTool(toolName: string): boolean {
-    if (ALWAYS_GATED_TOOLS.includes(toolName)) return true;
+    if (ALWAYS_GATED_TOOLS.includes(toolName)) {
+      if (toolName === "web_search" && process.env.PI_NO_SEARCH_GATE) return false;
+      return true;
+    }
     if (mode === "build" && BUILD_GATED_TOOLS.includes(toolName)) return true;
     return false;
   }
