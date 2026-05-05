@@ -1,0 +1,18 @@
+{
+  "defaultProvider": "openrouter",
+  "defaultModel": "deepseek/deepseek-v4-pro",
+  "theme": "dark",
+  "defaultThinkingLevel": "high",
+  "enabledModels": [
+    "qwen/qwen3.6-plus",
+    "deepseek/deepseek-v4-pro",
+    "openai/gpt-oss-120b",
+    "deepseek/deepseek-v4-flash",
+    "minimax/minimax-m2.7",
+    "qwen/qwen3-coder",
+    "ollama/qwen3:8b",
+    "ollama/qwen2.5-coder:7b-instruct",
+    "openai-codex/gpt-5.4",
+    "openai-codex/gpt-5.4-mini"
+  ]
+}
