@@ -177,7 +177,7 @@ export default function (pi: ExtensionAPI) {
       return;
     }
 
-    if (choice === "Block" || choice === null) {
+    if (choice === "Block" || choice == null) {
       return { block: true, reason: "Blocked by user" };
     }
 
