@@ -77,7 +77,13 @@
 // - Consider pinning the ddgs version used by `uv tool run` to reduce runtime drift
 // - Tighten `maxResults` validation to integers only
 
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import {
+  type ExtensionAPI,
+  DEFAULT_MAX_BYTES,
+  DEFAULT_MAX_LINES,
+  formatSize,
+  truncateHead,
+} from "@mariozechner/pi-coding-agent";
 import { Text } from "@mariozechner/pi-tui";
 import { StringEnum } from "@mariozechner/pi-ai";
 import { Type, type Static } from "@sinclair/typebox";
@@ -207,10 +213,19 @@ function formatExtractResult(url: string, content: string, format: string): stri
     return `No extractable content returned for URL: ${url}`;
   }
 
-  const preview =
-    trimmed.length > 4000 ? `${trimmed.slice(0, 4000)}\n\n[truncated]` : trimmed;
+  const truncation = truncateHead(trimmed);
+  let text = `Extracted content from ${url} (${format}):\n\n${truncation.content}`;
 
-  return `Extracted content from ${url} (${format}):\n\n${preview}`;
+  if (truncation.truncated) {
+    const details =
+      truncation.truncatedBy === "lines"
+        ? `Showing first ${truncation.outputLines} of ${truncation.totalLines} lines (${truncation.maxLines ?? DEFAULT_MAX_LINES} line limit).`
+        : `Showing first ${formatSize(truncation.outputBytes)} of ${formatSize(truncation.totalBytes)} (${formatSize(truncation.maxBytes ?? DEFAULT_MAX_BYTES)} limit).`;
+
+    text += `\n\n[truncated] ${details} Full content is available in details.content.`;
+  }
+
+  return text;
 }
 
 function normalizeParsedSearchResults(parsed: unknown): SearchResult[] | null {
@@ -457,6 +472,11 @@ export default function (pi: ExtensionAPI) {
             text: formatExtractResult(url, stdout, extractFormat),
           },
         ],
+        // TODO:
+        // If truncated extract previews prove insufficient, add a stronger continuation mechanism:
+        // - save full extracted content to a temp file and return its path, or
+        // - add paging/offset support for extract results
+        // `details.content` preserves full output, but is not a reliable model-facing continuation channel.
         details: {
           action: "extract",
           url,
