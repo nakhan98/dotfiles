@@ -9,6 +9,7 @@
 // - In plan mode, the user can still run !cmd (user bash) freely
 // - /plan [msg]  — switches to plan mode, restricts LLM to read-only tools; if msg is provided, prepends a mode-change note and sends it to the LLM immediately, then switches back to the previous mode (only if mode actually changed)
 // - /build [msg] — switches to build mode, gives LLM full tool access; if msg is provided, prepends a mode-change note and sends it to the LLM immediately, then switches back to the previous mode (only if mode actually changed)
+// - If DEV_CONTAINER=1 is set, the footer is prefixed with "[DEV_CONTAINER]" (e.g. "[DEV_CONTAINER] mode: plan [...]")
 // - The current mode is shown in the footer as "mode: plan" (muted) or "mode: build" (green) under the "modes-ext" status key
 // - Mode resets to "plan" on each new session start
 //
@@ -55,15 +56,17 @@ export default function (pi: ExtensionAPI) {
     return false;
   }
 
+  const MODE_PREFIX = process.env.DEV_CONTAINER === "1" ? "[DEV_CONTAINER] " : "";
+
   function applyMode(ctx: ExtensionContext) {
     if (mode === "plan") {
       pi.setActiveTools(PLAN_TOOLS);
       const parts = formatStatuses(ALWAYS_GATED_TOOLS);
-      ctx.ui.setStatus("modes-ext", ctx.ui.theme.fg("muted", `mode: plan [${parts}]`));
+      ctx.ui.setStatus("modes-ext", ctx.ui.theme.fg("muted", `${MODE_PREFIX}mode: plan [${parts}]`));
     } else {
       pi.setActiveTools(BUILD_TOOLS);
       const parts = formatStatuses([...BUILD_GATED_TOOLS, ...ALWAYS_GATED_TOOLS]);
-      ctx.ui.setStatus("modes-ext", ctx.ui.theme.fg("success", `mode: build [${parts}]`));
+      ctx.ui.setStatus("modes-ext", ctx.ui.theme.fg("success", `${MODE_PREFIX}mode: build [${parts}]`));
     }
   }
 
@@ -97,10 +100,11 @@ export default function (pi: ExtensionAPI) {
   // Fix 3: tell the LLM about its restrictions upfront
   pi.on("before_agent_start", async () => {
     if (mode === "plan") {
+      const prefix = process.env.DEV_CONTAINER === "1" ? "[DEV_CONTAINER] " : "";
       return {
         message: {
           customType: "modes-ext-context",
-          content: "[PLAN MODE] You are in read-only mode. Only read, grep, find, ls, and web_search are available. Do not attempt file modifications or bash commands.",
+          content: `${prefix}[PLAN MODE] You are in read-only mode. Only read, grep, find, ls, and web_search are available. Do not attempt file modifications or bash commands.`,
           display: false,
         },
       };
