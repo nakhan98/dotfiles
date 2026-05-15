@@ -7,10 +7,12 @@ This setup uses a **modes extension** that controls tool access per session:
 - Sessions always start in **plan mode** — read-only local tools plus `web_search` (`read`, `grep`, `find`, `ls`, `web_search`)
 - Use `/build` to switch to build mode — full access (`read`, `grep`, `find`, `ls`, `web_search`, `bash`, `write`, `edit`)
 - Use `/plan` to switch back to plan mode
+<!-- TODO: remove these lines — they describe UI/terminal rendering and don't affect model behavior
 - The current mode is shown in the footer as:
   - `mode: plan [web_search: ask|ok]`
   - `mode: build [bash: ask|ok, write: ask|ok, edit: ask|ok, web_search: ask|ok]`
 - If the `DEV_CONTAINER` environment variable is set to `1`, the footer is prefixed with `[DEV_CONTAINER]`, e.g. `[DEV_CONTAINER] mode: plan [web_search: ask|ok]`
+-->
 - `web_search` requires user confirmation in **both** plan and build mode unless previously accepted for the session
 - In build mode, each `bash`, `write`, and `edit` call also requires user confirmation
 - The confirmation dialog offers:
