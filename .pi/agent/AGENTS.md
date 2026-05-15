@@ -32,6 +32,38 @@ This provides first-class search and URL extraction without requiring general `b
 
 The legacy `ddgs` skill is still present for manual use, but automatic model invocation is disabled.
 
+### Full Page Content Retrieval
+
+The `web_search` tool truncates output at 50KB, which may cut off large pages
+(e.g., HN threads with 100+ comments). To retrieve the full content:
+
+1. Ask the user to switch to **build mode** (`/build`)
+2. Run: `uv run --with ddgs ddgs extract -u <URL>`
+3. The full output is saved to `/tmp/pi-bash-*.log` by the bash tool
+4. Use `read` with `offset` to page through the saved file
+
+Note: `ddgs` is not installed as a persistent uv tool — it's invoked ephemerally
+via `uv run --with ddgs`. The first run may be slow while uv caches it.
+
+## Extending Capabilities via `uv run --with`
+
+Beyond web search, many other tasks can be handled ephemerally using `uv run --with <package>`
+to execute a one-shot Python script. This avoids permanent installations and keeps the environment clean.
+
+Use this pattern when a task requires a specialized library not available in the default environment.
+Prefer **reputable, well-maintained, and dependable libraries** — check package downloads,
+maintenance status, and documentation before choosing one.
+
+### Common use cases
+
+- **PDF extraction**: `uv run --with pdfplumber python -c "import pdfplumber; ..."`
+- **CSV/Excel processing**: `uv run --with openpyxl python -c "..."`
+- **Image manipulation**: `uv run --with Pillow python -c "..."`
+- **Archive extraction**: Built-in `tarfile`/`zipfile` for standard formats
+- **Data serialization**: `uv run --with pyyaml`
+
+Follow the same bash confirmation flow as any other command in build mode.
+
 ## General Guidelines
 
 - `./.tmp/` is globally git-ignored (see `~/.config/git/ignore`) and serves as a development scratch space when working inside git repositories.
