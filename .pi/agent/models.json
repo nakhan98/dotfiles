@@ -116,7 +116,7 @@
           "name": "Qwen3-Coder-480B-A35B",
           "reasoning": true,
           "input": ["text"],
-          "contextWindow": 262144,
+          "contextWindow": 1000000,
           "maxTokens": 262144,
           "cost": {
             "input": 0.22,
@@ -161,8 +161,8 @@
           "contextWindow": 1048576,
           "maxTokens": 384000,
           "cost": {
-            "input": 0.14,
-            "output": 0.28,
+            "input": 0.0983,
+            "output": 0.1966,
             "cacheRead": 0,
             "cacheWrite": 0
           },
