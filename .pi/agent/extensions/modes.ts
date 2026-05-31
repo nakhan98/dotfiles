@@ -17,7 +17,8 @@
 // - /build [msg] — switches to build mode, gives LLM full tool access; if msg is provided,
 //   prepends a mode-change note and sends it to the LLM immediately, then switches back to the
 //   previous mode (only if mode actually changed)
-// - /run — one-shot: switches to build mode, auto-returns to plan after agent finishes
+// - /run — one-shot: switches to build mode, sends "Proceed" to trigger agent turn,
+//   auto-returns to plan after agent finishes
 // - If DEV_CONTAINER=1 is set, the footer is prefixed with "[DEV_CONTAINER]"
 // - The current mode is shown in the footer as "mode: plan" (muted) or "mode: build" (green)
 //   under the "modes-ext" status key
@@ -115,15 +116,18 @@ export default function (pi: ExtensionAPI) {
     },
   });
 
-  // One-shot: switch to build mode, auto-return to plan after agent finishes
-  // Does not send any message — just changes mode so the user can type their own request
+  // One-shot: switch to build mode, send "Proceed" to trigger agent turn,
+  // then auto-return to plan after agent finishes.
+  // "Proceed" tells the LLM to continue with what it was previously suggesting.
   pi.registerCommand("run", {
-    description: "One-shot: switch to build mode, auto-return to plan after agent finishes",
+    description: "One-shot: switch to build mode, send 'Proceed', auto-return to plan",
     handler: async (_args, ctx) => {
+      const previous = mode;
       mode = "build";
       applyMode(ctx);
-      returnToMode = "plan";
-      ctx.ui.notify("Switched to build mode (will return to plan mode after this turn)", "success");
+      ctx.ui.notify("Switched to build mode", "success");
+      returnToMode = previous !== mode ? previous : null;
+      pi.sendUserMessage("(Switched to build mode — bash, write, and edit tools are now available)\n\nProceed");
     },
   });
 }
