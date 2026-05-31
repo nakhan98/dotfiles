@@ -25,7 +25,7 @@ Provides granular allow/ask/deny gates in build mode:
 <!--
   Note to self (not agent instructions):
   Permission prompt display explanation:
-  The config uses "*": "allow" as the default, with specific tools set to "ask"
+  The config uses "*": "ask" as the default, with specific tools set to "ask"
   (write, edit, web_search, bash, mcp, skill, external_directory). This means
   permission prompts will show the specific tool name (e.g. (matched 'write'))
   instead of a wildcard, because each ask-tool explicitly differs from the default.

@@ -8,7 +8,7 @@
   "piInfrastructureReadPaths": [],
 
   "permission": {
-    "*": "allow",
+    "*": "ask",
     "read": "allow",
     "grep": "allow",
     "find": "allow",
