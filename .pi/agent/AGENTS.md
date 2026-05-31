@@ -1,6 +1,30 @@
 # Global Agent Context
 
-**Note:** The `modes` extension (`extensions/modes.ts`) is currently **disabled** (renamed to `modes.ts.disabled`) while testing `@gotgenes/pi-permission-system`. There is no plan/build mode separation — all tools are available. The tool confirmation gate (bash/write/edit/web_search prompts) is also inactive. The permission system provides a more targeted permission system for file protection, dangerous commands, and path access.
+## Modes (plan/build) + Permission System
+
+This setup uses **two extensions working together**:
+
+### Plan/Build Mode (`extensions/modes.ts`)
+Provides read-only plan mode and full-access build mode:
+- Sessions always start in **plan mode** — only `read`, `grep`, `find`, `ls`, and `web_search` are available to the LLM
+- Use `/build` to switch to build mode — the LLM has access to all tools (`bash`, `write`, `edit`, etc.)
+- Use `/plan` to switch back to plan mode
+- The current mode is shown in the footer: `mode: plan` (muted) or `mode: build` (green)
+- If the `DEV_CONTAINER` environment variable is set to `1`, the footer is prefixed with `[DEV_CONTAINER]`
+- One-shot mode change: `/build [msg]` or `/plan [msg]` switches mode, sends your message, then returns to the previous mode
+
+### Permission System (`@gotgenes/pi-permission-system`)
+Provides granular allow/ask/deny gates in build mode:
+- `read`, `grep`, `find`, `ls` — allowed silently
+- `write`, `edit` — ask for confirmation
+- `web_search` — ask for confirmation
+- `bash` — ask for confirmation (dangerous patterns like `rm -rf *`, `chown`, `dd`, `mkfs`, `mount` are denied outright)
+- Path protection: `.env`, `~/.ssh/*`, credential files, secret files are blocked across all tools
+- External directory access (outside current working directory) — ask for confirmation
+
+### How they interact
+- In **plan mode**: the permission system's path protections still apply, but write/edit/bash tools aren't even visible to the LLM
+- In **build mode**: all tools are visible, and the permission system enforces its allow/ask/deny rules
 
 For multi-step tasks:
 - Always explore and plan first in the conversation before making changes
