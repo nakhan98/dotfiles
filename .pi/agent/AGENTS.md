@@ -23,7 +23,8 @@ Provides granular allow/ask/deny gates in build mode:
 - External directory access (outside current working directory) — ask for confirmation
 
 <!--
-  Permission prompt display note:
+  Note to self (not agent instructions):
+  Permission prompt display explanation:
   The config uses "*": "allow" as the default, with specific tools set to "ask"
   (write, edit, web_search, bash, mcp, skill, external_directory). This means
   permission prompts will show the specific tool name (e.g. (matched 'write'))
