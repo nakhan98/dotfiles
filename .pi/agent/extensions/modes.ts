@@ -17,6 +17,7 @@
 // - /build [msg] — switches to build mode, gives LLM full tool access; if msg is provided,
 //   prepends a mode-change note and sends it to the LLM immediately, then switches back to the
 //   previous mode (only if mode actually changed)
+// - /run — one-shot: switches to build mode, auto-returns to plan after agent finishes
 // - If DEV_CONTAINER=1 is set, the footer is prefixed with "[DEV_CONTAINER]"
 // - The current mode is shown in the footer as "mode: plan" (muted) or "mode: build" (green)
 //   under the "modes-ext" status key
@@ -62,7 +63,7 @@ export default function (pi: ExtensionAPI) {
     }
   });
 
-  // Auto-return to previous mode after one-shot /plan [msg] or /build [msg]
+  // Auto-return to previous mode after one-shot /plan [msg], /build [msg], or /run
   pi.on("agent_end", async (_event, ctx) => {
     if (returnToMode !== null) {
       mode = returnToMode;
@@ -111,6 +112,18 @@ export default function (pi: ExtensionAPI) {
         returnToMode = previous !== mode ? previous : null;
         pi.sendUserMessage(`(Switched to build mode — bash, write, and edit tools are now available)\n\n${args.trim()}`);
       }
+    },
+  });
+
+  // One-shot: switch to build mode, auto-return to plan after agent finishes
+  // Does not send any message — just changes mode so the user can type their own request
+  pi.registerCommand("run", {
+    description: "One-shot: switch to build mode, auto-return to plan after agent finishes",
+    handler: async (_args, ctx) => {
+      mode = "build";
+      applyMode(ctx);
+      returnToMode = "plan";
+      ctx.ui.notify("Switched to build mode (will return to plan mode after this turn)", "success");
     },
   });
 }
