@@ -1,0 +1,42 @@
+{
+  "$schema": "https://raw.githubusercontent.com/gotgenes/pi-permission-system/main/schemas/permissions.schema.json",
+
+  "debugLog": false,
+  "permissionReviewLog": true,
+  "yoloMode": false,
+
+  "piInfrastructureReadPaths": [],
+
+  "permission": {
+    "*": "ask",
+    "read": "allow",
+    "grep": "allow",
+    "find": "allow",
+    "ls": "allow",
+    "path": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow",
+      "**/node_modules/**": "allow",
+      "~/.ssh/*": "deny",
+      "~/.config/**/credentials*": "deny",
+      "**/secret*": "deny",
+      "**/credential*": "deny"
+    },
+    "write": "ask",
+    "edit": "ask",
+    "web_search": "ask",
+    "bash": {
+      "*": "ask",
+      "rm -rf *": "deny",
+      "chown *": "deny",
+      "dd *": "deny",
+      "mkfs*": "deny",
+      "mount *": "deny"
+    },
+    "mcp": { "*": "ask" },
+    "skill": { "*": "ask" },
+    "external_directory": "ask"
+  }
+}

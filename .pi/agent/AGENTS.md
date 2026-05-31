@@ -1,30 +1,10 @@
 # Global Agent Context
 
-## Modes (plan/build)
-
-This setup uses a **modes extension** that controls tool access per session:
-
-- Sessions always start in **plan mode** — read-only local tools plus `web_search` (`read`, `grep`, `find`, `ls`, `web_search`)
-- Use `/build` to switch to build mode — full access (`read`, `grep`, `find`, `ls`, `web_search`, `bash`, `write`, `edit`)
-- Use `/plan` to switch back to plan mode
-<!-- TODO: remove these lines — they describe UI/terminal rendering and don't affect model behavior
-- The current mode is shown in the footer as:
-  - `mode: plan [web_search: ask|ok]`
-  - `mode: build [bash: ask|ok, write: ask|ok, edit: ask|ok, web_search: ask|ok]`
-- If the `DEV_CONTAINER` environment variable is set to `1`, the footer is prefixed with `[DEV_CONTAINER]`, e.g. `[DEV_CONTAINER] mode: plan [web_search: ask|ok]`
--->
-- `web_search` requires user confirmation in **both** plan and build mode unless previously accepted for the session
-- In build mode, each `bash`, `write`, and `edit` call also requires user confirmation
-- The confirmation dialog offers:
-  - `Proceed` — allow once
-  - `Accept all` — silence that tool for the rest of the session
-  - `Block` — cancel the call
-- Do not retry a blocked call unless the user asks you to
+**Note:** The `modes` extension (`extensions/modes.ts`) is currently **disabled** (renamed to `modes.ts.disabled`) while testing `@gotgenes/pi-permission-system`. There is no plan/build mode separation — all tools are available. The tool confirmation gate (bash/write/edit/web_search prompts) is also inactive. The permission system provides a more targeted permission system for file protection, dangerous commands, and path access.
 
 For multi-step tasks:
-- Always explore and plan first in **plan mode**
-- In **plan mode**, remain strictly read-only and keep any plan/todo in conversational context/history
-- For multi-step tasks, track progress using an internal todo in conversational context/history
+- Always explore and plan first in the conversation before making changes
+- Track progress using an internal todo in conversational context/history
 - Do **not** create a todo file unless the user explicitly asks for one
 
 ## Web Search
