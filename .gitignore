@@ -1,3 +1,6 @@
 *.pyc
 *~
 .netrwhist
+
+# pi-permission-system runtime logs
+.pi/agent/extensions/pi-permission-system/logs/
