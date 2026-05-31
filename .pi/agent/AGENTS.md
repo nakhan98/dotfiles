@@ -22,6 +22,17 @@ Provides granular allow/ask/deny gates in build mode:
 - Path protection: `.env`, `~/.ssh/*`, credential files, secret files are blocked across all tools
 - External directory access (outside current working directory) — ask for confirmation
 
+<!--
+  Permission prompt display note:
+  When the permission system prompts "tool 'write' (matched '*')", the '(matched '*')'
+  refers to the default catch-all wildcard "*": "ask" in config.json. This is the first
+  rule checked and matches all tools. Since explicit tool rules like "write": "ask"
+  have the same value as the wildcard, the system reports the broader '*' match in the
+  prompt. This is cosmetic only — the effective behavior is identical. Tools that
+  override the wildcard (e.g. "read": "allow" differs from "*": "ask") work silently
+  and show no prompt at all.
+-->
+
 ### How they interact
 - In **plan mode**: the permission system's path protections still apply, but write/edit/bash tools aren't even visible to the LLM
 - In **build mode**: all tools are visible, and the permission system enforces its allow/ask/deny rules
