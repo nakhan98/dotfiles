@@ -24,13 +24,12 @@ Provides granular allow/ask/deny gates in build mode:
 
 <!--
   Permission prompt display note:
-  When the permission system prompts "tool 'write' (matched '*')", the '(matched '*')'
-  refers to the default catch-all wildcard "*": "ask" in config.json. This is the first
-  rule checked and matches all tools. Since explicit tool rules like "write": "ask"
-  have the same value as the wildcard, the system reports the broader '*' match in the
-  prompt. This is cosmetic only — the effective behavior is identical. Tools that
-  override the wildcard (e.g. "read": "allow" differs from "*": "ask") work silently
-  and show no prompt at all.
+  The config uses "*": "allow" as the default, with specific tools set to "ask"
+  (write, edit, web_search, bash, mcp, skill, external_directory). This means
+  permission prompts will show the specific tool name (e.g. (matched 'write'))
+  instead of a wildcard, because each ask-tool explicitly differs from the default.
+  The trade-off: any unlisted tool not explicitly set to "ask" will be silently
+  allowed. See config.json for the full rule set.
 -->
 
 ### How they interact
