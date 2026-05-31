@@ -26,11 +26,11 @@ Provides granular allow/ask/deny gates in build mode:
   Note to self (not agent instructions):
   Permission prompt display explanation:
   The config uses "*": "ask" as the default, with specific tools set to "ask"
-  (write, edit, web_search, bash, mcp, skill, external_directory). This means
-  permission prompts will show the specific tool name (e.g. (matched 'write'))
-  instead of a wildcard, because each ask-tool explicitly differs from the default.
-  The trade-off: any unlisted tool not explicitly set to "ask" will be silently
-  allowed. See config.json for the full rule set.
+  (write, edit, web_search, bash, mcp, skill, external_directory). Permission
+  prompts always show (matched '*') — this is the rule's pattern field, meaning
+  "matches any input to this tool." The universal catch-all "*": "ask" provides a
+  safety net: any unlisted tool not explicitly set will still prompt. See config.json
+  for the full rule set.
 -->
 
 ### How they interact
