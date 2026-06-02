@@ -3,6 +3,7 @@
   "defaultModel": "deepseek/deepseek-v4-pro",
   "theme": "dark",
   "defaultThinkingLevel": "high",
+  "packages": ["npm:@gotgenes/pi-permission-system"],
   "enabledModels": [
     "qwen/qwen3.6-plus",
     "deepseek/deepseek-v4-pro",
