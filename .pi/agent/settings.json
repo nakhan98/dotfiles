@@ -1,6 +1,6 @@
 {
   "defaultProvider": "openrouter",
-  "defaultModel": "deepseek/deepseek-v4-pro",
+  "defaultModel": "deepseek/deepseek-v4-flash",
   "theme": "dark",
   "defaultThinkingLevel": "high",
   "packages": ["npm:@gotgenes/pi-permission-system"],
