@@ -1,19 +1,18 @@
 {
+  "lastChangelogVersion": "0.79.8",
   "defaultProvider": "openrouter",
   "defaultModel": "deepseek/deepseek-v4-flash",
   "theme": "dark",
   "defaultThinkingLevel": "high",
-  "packages": ["npm:@gotgenes/pi-permission-system"],
+  "packages": [
+    "npm:@gotgenes/pi-permission-system"
+  ],
   "enabledModels": [
+    "qwen/qwen3.6-flash",
     "qwen/qwen3.6-plus",
     "deepseek/deepseek-v4-pro",
-    "openai/gpt-oss-120b",
     "deepseek/deepseek-v4-flash",
-    "minimax/minimax-m2.7",
-    "qwen/qwen3-coder",
-    "ollama/qwen3:8b",
-    "ollama/qwen2.5-coder:7b-instruct",
-    "openai-codex/gpt-5.4",
-    "openai-codex/gpt-5.4-mini"
+    "ollama/qwen3.5:4b",
+    "ollama/huihui_ai/qwen3.5-abliterated:4B"
   ]
 }
